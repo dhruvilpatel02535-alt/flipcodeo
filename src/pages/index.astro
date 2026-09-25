@@ -1,4 +1,7 @@
 ---
+import { getCollection } from 'astro:content';
+const photos = await getCollection('portfolio');
+const sortedPhotos = photos.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
 ---
 
 <!DOCTYPE html>
@@ -31,7 +34,7 @@
         @keyframes splashLogoIn { 0% { opacity: 0; transform: scale(0.3); } 30% { opacity: 1; transform: scale(1.1); } 60% { opacity: 1; transform: scale(1); } 100% { opacity: 1; transform: scale(1); } }
         .splash-logo::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #d4af37, transparent); animation: splashLine 1.5s ease forwards; }
         @keyframes splashLine { 0% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
-        .splash-sub { font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase; color: #555; margin-top: 15px; text-align: center; font-weight: 500; opacity: 0; animation: splashSubIn 0.8s 0.8s forwards; }
+        .splash-sub { font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase; color: #555; margin-top: 15px; text-align: center; font-family: 'Space Grotesk', sans-serif; font-weight: 500; opacity: 0; animation: splashSubIn 0.8s 0.8s forwards; }
         @keyframes splashSubIn { to { opacity: 1; } }
 
         /* ============ NAVBAR ============ */
@@ -48,9 +51,13 @@
         .nav-links a:hover { color: #111; }
         .nav-links a:hover::after { width: 100%; }
 
+        /* ============ HAMBURGER ============ */
         .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: rgba(255, 255, 255, 0.8); border: 1px solid rgba(212, 175, 55, 0.3); padding: 12px 10px; border-radius: 12px; transition: all 0.4s; }
+        .hamburger:hover { border-color: #d4af37; transform: translateY(-2px); }
         .hamburger span { width: 26px; height: 2px; background: linear-gradient(90deg, #111, #333); border-radius: 2px; transition: all 0.4s; }
+        .hamburger span:nth-child(1) { width: 26px; }
         .hamburger span:nth-child(2) { width: 20px; background: linear-gradient(90deg, #d4af37, #b8942a); }
+        .hamburger span:nth-child(3) { width: 26px; }
         .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); background: #d4af37; }
         .hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
         .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); background: #d4af37; }
@@ -72,7 +79,7 @@
         .magnetic-btn { background: #111; color: #fff; padding: 18px 55px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; border: none; transition: all 0.3s; text-decoration: none; display: inline-block; font-family: 'Space Grotesk', sans-serif; }
         .magnetic-btn:hover { background: #000; transform: translateY(-3px) scale(1.02); box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
 
-        /* ============ COMMON ============ */
+        /* ============ SECTION COMMON ============ */
         section { padding: 100px 40px; max-width: 1300px; margin: 0 auto; }
         .section-tag { font-size: 0.75rem; letter-spacing: 6px; text-transform: uppercase; color: #999; text-align: center; margin-bottom: 18px; }
         .section-title { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; text-align: center; margin-bottom: 20px; line-height: 1.1; }
@@ -98,7 +105,7 @@
         .service-icon { font-size: 2.5rem; margin-bottom: 25px; display: inline-block; transition: 0.3s; }
         .service-card:hover .service-icon { transform: scale(1.2) rotate(10deg); }
         .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; }
-        .service-card p { color: #777; font-size: 0.9rem; line-height: 1.8; }
+        .service-card p { color: #777; font-size: 0.9rem; line-height: 1.8; text-align: justify; hyphens: auto; }
         .service-card p strong { color: #111; }
 
         /* ============ PRICING ============ */
@@ -140,13 +147,13 @@
         .process-step:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.05); }
         .process-step .step-number { font-size: 2.8rem; font-weight: 900; color: #d4af37; font-family: 'Playfair Display', serif; margin-bottom: 15px; }
         .process-step h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 10px; }
-        .process-step p { color: #777; font-size: 0.9rem; }
+        .process-step p { color: #777; font-size: 0.9rem; text-align: justify; hyphens: auto; }
 
         /* ============ ABOUT ============ */
         .about-section { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
         .about-img { width: 100%; height: 380px; object-fit: cover; border-radius: 10px; }
         .about-text h3 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 15px; line-height: 1.2; }
-        .about-text p { color: #555; line-height: 1.8; margin-bottom: 15px; font-size: 0.95rem; }
+        .about-text p { color: #555; line-height: 1.8; margin-bottom: 15px; font-size: 0.95rem; text-align: justify; hyphens: auto; }
         .about-text p strong { color: #111; }
         .about-text .skills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
         .about-text .skills span { background: #f0f0f0; padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
@@ -167,9 +174,8 @@
 
         .portfolio-lightbox { position: fixed; inset: 0; z-index: 99999; background: rgba(0,0,0,0.92); backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; padding: 30px; opacity: 0; visibility: hidden; transition: opacity 0.4s, visibility 0.4s; }
         .portfolio-lightbox.active { opacity: 1; visibility: visible; }
-        .portfolio-lightbox img { max-width: 90%; max-height: 85vh; object-fit: contain; border-radius: 8px; transform: scale(0.9); transition: transform 0.4s; }
-        .portfolio-lightbox.active img { transform: scale(1); }
-        .portfolio-lightbox-close { position: absolute; top: 25px; right: 30px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: #fff; width: 45px; height: 45px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .portfolio-lightbox img { max-width: 90%; max-height: 85vh; object-fit: contain; border-radius: 8px; }
+        .portfolio-lightbox-close { position: absolute; top: 25px; right: 30px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: #fff; width: 45px; height: 45px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; }
         .portfolio-lightbox-close:hover { background: #d4af37; }
 
         /* ============ BLOG ============ */
@@ -178,21 +184,20 @@
         .blog-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); border-color: #d4af37; }
         .blog-tag { display: inline-block; background: #fff8e7; color: #d4af37; padding: 5px 15px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
         .blog-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3; }
-        .blog-card p { color: #777; font-size: 0.9rem; line-height: 1.7; margin-bottom: 20px; }
-        .blog-read { color: #d4af37; font-size: 0.85rem; font-weight: 600; text-decoration: none; cursor: pointer; }
+        .blog-card p { color: #777; font-size: 0.9rem; line-height: 1.7; margin-bottom: 20px; text-align: justify; hyphens: auto; }
+        .blog-read { color: #d4af37; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
         .blog-read:hover { color: #b8942a; }
 
-        .blog-modal { position: fixed; inset: 0; z-index: 99999; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; padding: 20px; opacity: 0; visibility: hidden; transition: opacity 0.4s, visibility 0.4s; }
+        .blog-modal { position: fixed; inset: 0; z-index: 99999; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; padding: 20px; opacity: 0; visibility: hidden; transition: 0.4s; }
         .blog-modal.active { opacity: 1; visibility: visible; }
-        .blog-modal-content { background: #fff; max-width: 800px; width: 100%; max-height: 85vh; overflow-y: auto; border-radius: 16px; padding: 45px 40px; position: relative; transform: translateY(30px) scale(0.95); transition: transform 0.4s; }
-        .blog-modal.active .blog-modal-content { transform: translateY(0) scale(1); }
-        .blog-modal-close { position: absolute; top: 15px; right: 20px; background: #f5f5f5; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.4rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .blog-modal-content { background: #fff; max-width: 800px; width: 100%; max-height: 85vh; overflow-y: auto; border-radius: 16px; padding: 45px 40px; position: relative; }
+        .blog-modal-close { position: absolute; top: 15px; right: 20px; background: #f5f5f5; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.4rem; cursor: pointer; }
         .blog-modal-close:hover { background: #d4af37; color: #fff; }
         .blog-modal-content h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; line-height: 1.25; margin-bottom: 20px; }
         .blog-modal-content .blog-body { color: #555; font-size: 1rem; line-height: 1.9; }
-        .blog-modal-content .blog-body p { margin-bottom: 18px; }
+        .blog-modal-content .blog-body p { margin-bottom: 18px; text-align: justify; hyphens: auto; }
         .blog-modal-content .blog-body strong { color: #111; }
-        .blog-modal-content .blog-body h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin: 28px 0 14px; color: #111; }
+        .blog-modal-content .blog-body h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin: 28px 0 14px; }
         .blog-modal-content .blog-body ul { margin: 0 0 18px 22px; }
         .blog-modal-content .blog-body ul li { margin-bottom: 8px; }
 
@@ -202,25 +207,27 @@
         .why-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.06); }
         .why-card .why-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
         .why-card h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 12px; }
-        .why-card p { color: #777; font-size: 0.9rem; line-height: 1.7; }
+        .why-card p { color: #777; font-size: 0.9rem; line-height: 1.7; text-align: justify; hyphens: auto; }
 
         /* ============ FAQ ============ */
         .faq-list { max-width: 800px; margin: auto; }
         .faq-item { background: #fff; border: 1px solid #eaeaea; margin-bottom: 15px; padding: 18px 20px; cursor: pointer; transition: 0.3s; }
         .faq-item:hover { border-color: #d4af37; }
         .faq-question { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 15px; }
-        .faq-answer { color: #777; margin-top: 15px; display: none; line-height: 1.8; font-size: 0.95rem; }
+        .faq-answer { color: #777; margin-top: 15px; display: none; line-height: 1.8; font-size: 0.95rem; text-align: justify; hyphens: auto; }
         .faq-item.active .faq-answer { display: block; }
         .faq-answer strong { color: #111; }
 
         /* ============ CONTACT ============ */
-        .contact-wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; background: #fff; border: 1px solid #eaeaea; padding: 45px 40px; max-width: 1100px; margin: 0 auto; }
+        .contact-wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; background: #fff; border: 1px solid #eaeaea; padding: 45px 40px; box-shadow: 0 30px 70px rgba(0,0,0,0.05); max-width: 1100px; margin: 0 auto; }
         .contact-info h3 { font-family: 'Playfair Display', serif; font-size: 2.5rem; line-height: 1.1; margin-bottom: 20px; font-weight: 900; }
-        .contact-info p { color: #777; margin-bottom: 20px; line-height: 1.8; font-size: 0.95rem; }
+        .contact-info p { color: #777; margin-bottom: 20px; line-height: 1.8; font-size: 0.95rem; text-align: justify; hyphens: auto; }
         .contact-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 4px; color: #aaa; margin-top: 25px; display: block; }
-        .contact-label + p { font-size: 1rem; font-weight: 500; color: #111; margin-top: 5px; }
+        .contact-label + p { font-size: 1rem; font-weight: 500; color: #111; margin-top: 5px; text-align: left; }
         .contact-form input, .contact-form textarea { width: 100%; background: #fafafa; border: 1px solid #e0e0e0; padding: 16px; margin: 10px 0; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: #111; background: #fff; outline: none; }
         .contact-form button { background: #111; color: #fff; padding: 16px 45px; border: none; border-radius: 50px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; font-size: 0.8rem; margin-top: 15px; font-family: 'Space Grotesk', sans-serif; }
+        .contact-form button:hover { background: #333; transform: translateY(-3px); }
 
         /* ============ WHATSAPP ============ */
         .whatsapp-float { position: fixed; bottom: 30px; right: 30px; z-index: 9999; background: #25d366; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; text-decoration: none; box-shadow: 0 10px 30px rgba(0,0,0,0.2); animation: whatsappPulse 2s infinite; }
@@ -229,12 +236,13 @@
 
         /* ============ FOOTER ============ */
         footer { background: #111; color: #fff; padding: 70px 40px; text-align: center; }
-        .footer-logo { display: inline-flex; flex-direction: column; align-items: center; margin-bottom: 30px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 2.5rem; font-weight: 700; color: #fff; position: relative; filter: drop-shadow(0 0 10px rgba(212,175,55,0.3)); }
+        .footer-logo { display: inline-flex; flex-direction: column; align-items: center; margin-bottom: 30px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 2.5rem; font-weight: 700; color: #fff; position: relative; filter: drop-shadow(0 0 10px rgba(212,175,55,0.3)); animation: footerGlow 3s infinite; }
+        @keyframes footerGlow { 0%, 100% { filter: drop-shadow(0 0 10px rgba(212,175,55,0.3)); } 50% { filter: drop-shadow(0 0 25px rgba(212,175,55,0.6)); } }
         .footer-logo::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #d4af37, transparent); }
         .footer-logo-sub { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: #888; margin-top: 8px; font-family: 'Space Grotesk', sans-serif; font-style: normal; font-weight: 500; }
         .footer-links { display: flex; justify-content: center; gap: 35px; margin-bottom: 45px; flex-wrap: wrap; }
         .footer-links a { color: #888; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; transition: 0.3s; }
-        .footer-links a:hover { color: #fff; }
+        .footer-links a:hover { color: #fff; transform: translateY(-2px); }
         .socials { display: flex; justify-content: center; gap: 20px; margin-bottom: 45px; }
         .socials a { width: 50px; height: 50px; border: 1px solid #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #888; text-decoration: none; transition: 0.4s; }
         .socials a:hover { border-color: #fff; color: #fff; background: #222; }
@@ -270,8 +278,6 @@
             .pricing-card .price { font-size: 2.4rem; }
             .service-card { padding: 35px 25px; }
             .blog-card { padding: 25px 20px; }
-            .blog-modal-content { padding: 30px 20px; }
-            .blog-modal-content h2 { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -355,36 +361,12 @@
             <p class="section-sub">We offer complete <strong>website design and development services</strong> for businesses in India.</p>
         </div>
         <div class="services-grid stagger">
-            <div class="service-card">
-                <span class="service-icon">🎨</span>
-                <h3>Custom Website Design</h3>
-                <p>We create <strong>custom website designs</strong> that reflect your unique brand identity. Perfect for small businesses looking to stand out online.</p>
-            </div>
-            <div class="service-card">
-                <span class="service-icon">⚡</span>
-                <h3>Website Development</h3>
-                <p>Our <strong>website development services</strong> use clean, optimized code for blazing-fast performance and better Google rankings.</p>
-            </div>
-            <div class="service-card">
-                <span class="service-icon">🛒</span>
-                <h3>E-Commerce Website</h3>
-                <p>We build <strong>e-commerce websites</strong> with payment gateway integration, product management, and secure checkout.</p>
-            </div>
-            <div class="service-card">
-                <span class="service-icon">📱</span>
-                <h3>Mobile Responsive Design</h3>
-                <p>All our websites are <strong>mobile responsive</strong>, ensuring perfect experience on every device — phone, tablet, desktop.</p>
-            </div>
-            <div class="service-card">
-                <span class="service-icon">🔍</span>
-                <h3>SEO-Friendly Websites</h3>
-                <p>We create <strong>SEO-friendly websites</strong> that help your business rank higher on Google and attract more customers.</p>
-            </div>
-            <div class="service-card">
-                <span class="service-icon">🛡️</span>
-                <h3>Website Maintenance</h3>
-                <p>Ongoing <strong>website maintenance services</strong> including updates, backups, and support for peace of mind.</p>
-            </div>
+            <div class="service-card"><span class="service-icon">🎨</span><h3>Custom Website Design</h3><p>We create <strong>custom website designs</strong> that reflect your unique brand identity. Perfect for small businesses looking to stand out online.</p></div>
+            <div class="service-card"><span class="service-icon">⚡</span><h3>Website Development</h3><p>Our <strong>website development services</strong> use clean, optimized code for blazing-fast performance and better Google rankings.</p></div>
+            <div class="service-card"><span class="service-icon">🛒</span><h3>E-Commerce Website</h3><p>We build <strong>e-commerce websites</strong> with payment gateway integration, product management, and secure checkout.</p></div>
+            <div class="service-card"><span class="service-icon">📱</span><h3>Mobile Responsive Design</h3><p>All our websites are <strong>mobile responsive</strong>, ensuring perfect experience on every device — phone, tablet, desktop.</p></div>
+            <div class="service-card"><span class="service-icon">🔍</span><h3>SEO-Friendly Websites</h3><p>We create <strong>SEO-friendly websites</strong> that help your business rank higher on Google and attract more customers.</p></div>
+            <div class="service-card"><span class="service-icon">🛡️</span><h3>Website Maintenance</h3><p>Ongoing <strong>website maintenance services</strong> including updates, backups, and support for peace of mind.</p></div>
         </div>
     </section>
 
@@ -401,13 +383,8 @@
                 <div class="price">₹2,999</div>
                 <div class="price-note">One-time payment (domain extra)</div>
                 <ul>
-                    <li>1 Page Website</li>
-                    <li>Mobile Responsive</li>
-                    <li>WhatsApp Button</li>
-                    <li>Basic SEO</li>
-                    <li>15 Days Support</li>
-                    <li class="muted">Contact Form</li>
-                    <li class="muted">Gallery</li>
+                    <li>1 Page Website</li><li>Mobile Responsive</li><li>WhatsApp Button</li><li>Basic SEO</li><li>15 Days Support</li>
+                    <li class="muted">Contact Form</li><li class="muted">Gallery</li>
                 </ul>
                 <button class="btn" onclick="scrollToSection('contact')">Choose Starter</button>
             </div>
@@ -416,13 +393,7 @@
                 <div class="price">₹4,999</div>
                 <div class="price-note">One-time payment (domain extra)</div>
                 <ul>
-                    <li>3 Pages Website</li>
-                    <li>Mobile Responsive</li>
-                    <li>WhatsApp Button</li>
-                    <li>Contact Form</li>
-                    <li>Gallery Section</li>
-                    <li>Basic SEO</li>
-                    <li>1 Month Support</li>
+                    <li>3 Pages Website</li><li>Mobile Responsive</li><li>WhatsApp Button</li><li>Contact Form</li><li>Gallery Section</li><li>Basic SEO</li><li>1 Month Support</li>
                 </ul>
                 <button class="btn" onclick="scrollToSection('contact')">Choose Business</button>
             </div>
@@ -431,13 +402,7 @@
                 <div class="price">₹9,999</div>
                 <div class="price-note">One-time payment (domain extra)</div>
                 <ul>
-                    <li>5 Pages Website</li>
-                    <li>Mobile Responsive</li>
-                    <li>WhatsApp Button</li>
-                    <li>Contact Form + Gallery</li>
-                    <li>Basic SEO</li>
-                    <li>Priority Delivery</li>
-                    <li>2 Months Support</li>
+                    <li>5 Pages Website</li><li>Mobile Responsive</li><li>WhatsApp Button</li><li>Contact Form + Gallery</li><li>Basic SEO</li><li>Priority Delivery</li><li>2 Months Support</li>
                 </ul>
                 <button class="btn" onclick="scrollToSection('contact')">Choose Premium</button>
             </div>
@@ -497,48 +462,18 @@
             <p class="section-sub">A glimpse of <strong>websites we've designed</strong> for businesses across India.</p>
         </div>
         <div class="portfolio-grid stagger">
-            <div class="portfolio-card" onclick="openPortfolio('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200', 'Restaurant Website')">
-                <div class="portfolio-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600" alt="Restaurant Website" loading="lazy">
-                    <div class="portfolio-overlay"><span>View Project →</span></div>
+            {sortedPhotos.map((photo) => (
+                <div class="portfolio-card" onclick={`openPortfolio('${photo.data.image}', '${photo.data.title}')`}>
+                    <div class="portfolio-img-wrap">
+                        <img src={photo.data.image} alt={photo.data.title} loading="lazy" />
+                        <div class="portfolio-overlay"><span>View Project →</span></div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>{photo.data.title}</h4>
+                        <p>{photo.data.category}</p>
+                    </div>
                 </div>
-                <div class="portfolio-info"><h4>Restaurant Website</h4><p>Food &amp; Dining</p></div>
-            </div>
-            <div class="portfolio-card" onclick="openPortfolio('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200', 'Gym Website')">
-                <div class="portfolio-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600" alt="Gym Website" loading="lazy">
-                    <div class="portfolio-overlay"><span>View Project →</span></div>
-                </div>
-                <div class="portfolio-info"><h4>Gym Website</h4><p>Fitness Center</p></div>
-            </div>
-            <div class="portfolio-card" onclick="openPortfolio('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200', 'Salon Website')">
-                <div class="portfolio-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600" alt="Salon Website" loading="lazy">
-                    <div class="portfolio-overlay"><span>View Project →</span></div>
-                </div>
-                <div class="portfolio-info"><h4>Salon Website</h4><p>Beauty &amp; Spa</p></div>
-            </div>
-            <div class="portfolio-card" onclick="openPortfolio('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200', 'Clinic Website')">
-                <div class="portfolio-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600" alt="Clinic Website" loading="lazy">
-                    <div class="portfolio-overlay"><span>View Project →</span></div>
-                </div>
-                <div class="portfolio-info"><h4>Clinic Website</h4><p>Healthcare</p></div>
-            </div>
-            <div class="portfolio-card" onclick="openPortfolio('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200', 'Shop Website')">
-                <div class="portfolio-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600" alt="Shop Website" loading="lazy">
-                    <div class="portfolio-overlay"><span>View Project →</span></div>
-                </div>
-                <div class="portfolio-info"><h4>Shop Website</h4><p>Retail Store</p></div>
-            </div>
-            <div class="portfolio-card" onclick="openPortfolio('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1200', 'Cafe Website')">
-                <div class="portfolio-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600" alt="Cafe Website" loading="lazy">
-                    <div class="portfolio-overlay"><span>View Project →</span></div>
-                </div>
-                <div class="portfolio-info"><h4>Cafe Website</h4><p>Coffee Shop</p></div>
-            </div>
+            ))}
         </div>
     </section>
 
@@ -550,42 +485,12 @@
             <p class="section-sub">Learn about <strong>website design, SEO, and online business growth</strong> in India.</p>
         </div>
         <div class="blog-grid stagger">
-            <div class="blog-card">
-                <span class="blog-tag">Business</span>
-                <h3>Why Your Small Business Needs a Website in 2026</h3>
-                <p>In today's digital age, having a <strong>professional website</strong> is essential for small businesses. Learn how a website can help you attract more customers online.</p>
-                <a class="blog-read" onclick="openBlog('blog1')">Read More →</a>
-            </div>
-            <div class="blog-card">
-                <span class="blog-tag">Pricing</span>
-                <h3>Website Design Cost in India – Complete Guide</h3>
-                <p>Confused about <strong>website design costs</strong>? We break down the pricing for small business websites, e-commerce stores, and custom solutions.</p>
-                <a class="blog-read" onclick="openBlog('blog2')">Read More →</a>
-            </div>
-            <div class="blog-card">
-                <span class="blog-tag">SEO</span>
-                <h3>How to Choose the Right Website Designer in India</h3>
-                <p>Looking for a <strong>website designer in India</strong>? Here are 7 things to check before hiring a web designer for your business.</p>
-                <a class="blog-read" onclick="openBlog('blog3')">Read More →</a>
-            </div>
-            <div class="blog-card">
-                <span class="blog-tag">Design</span>
-                <h3>5 Benefits of Mobile Responsive Website Design</h3>
-                <p>Over 70% of users browse websites on mobile. Learn why <strong>mobile responsive design</strong> is crucial for your business website.</p>
-                <a class="blog-read" onclick="openBlog('blog4')">Read More →</a>
-            </div>
-            <div class="blog-card">
-                <span class="blog-tag">Growth</span>
-                <h3>How a Website Can Grow Your Local Business</h3>
-                <p>From attracting new customers to building brand credibility, discover how a <strong>professional website</strong> can transform your local business.</p>
-                <a class="blog-read" onclick="openBlog('blog5')">Read More →</a>
-            </div>
-            <div class="blog-card">
-                <span class="blog-tag">Tips</span>
-                <h3>10 Must-Have Features for Your Business Website</h3>
-                <p>From <strong>WhatsApp integration</strong> to <strong>SEO optimization</strong>, here are 10 features every business website should have in 2026.</p>
-                <a class="blog-read" onclick="openBlog('blog6')">Read More →</a>
-            </div>
+            <div class="blog-card"><span class="blog-tag">Business</span><h3>Why Your Small Business Needs a Website in 2026</h3><p>In today's digital age, having a <strong>professional website</strong> is essential for small businesses. Learn how a website can help you attract more customers online.</p><a class="blog-read" onclick="openBlog('blog1')">Read More →</a></div>
+            <div class="blog-card"><span class="blog-tag">Pricing</span><h3>Website Design Cost in India – Complete Guide</h3><p>Confused about <strong>website design costs</strong>? We break down the pricing for small business websites, e-commerce stores, and custom solutions.</p><a class="blog-read" onclick="openBlog('blog2')">Read More →</a></div>
+            <div class="blog-card"><span class="blog-tag">SEO</span><h3>How to Choose the Right Website Designer in India</h3><p>Looking for a <strong>website designer in India</strong>? Here are 7 things to check before hiring a web designer for your business.</p><a class="blog-read" onclick="openBlog('blog3')">Read More →</a></div>
+            <div class="blog-card"><span class="blog-tag">Design</span><h3>5 Benefits of Mobile Responsive Website Design</h3><p>Over 70% of users browse websites on mobile. Learn why <strong>mobile responsive design</strong> is crucial for your business website.</p><a class="blog-read" onclick="openBlog('blog4')">Read More →</a></div>
+            <div class="blog-card"><span class="blog-tag">Growth</span><h3>How a Website Can Grow Your Local Business</h3><p>From attracting new customers to building brand credibility, discover how a <strong>professional website</strong> can transform your local business.</p><a class="blog-read" onclick="openBlog('blog5')">Read More →</a></div>
+            <div class="blog-card"><span class="blog-tag">Tips</span><h3>10 Must-Have Features for Your Business Website</h3><p>From <strong>WhatsApp integration</strong> to <strong>SEO optimization</strong>, here are 10 features every business website should have in 2026.</p><a class="blog-read" onclick="openBlog('blog6')">Read More →</a></div>
         </div>
     </section>
 
@@ -612,38 +517,14 @@
             <p class="section-sub">Everything you need to know about <strong>website design services</strong> in India.</p>
         </div>
         <div class="faq-list reveal">
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">Website banane mein kitna time lagta hai?<span>+</span></div>
-                <div class="faq-answer">Usually <strong>3-7 working days</strong>, depending on the complexity of the <strong>website design project</strong>.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">Website design ka kitna kharcha aayega?<span>+</span></div>
-                <div class="faq-answer"><strong>Starter website ₹2,999</strong> se shuru hota hai. Business ₹4,999 aur Premium ₹9,999. Domain ki keemat alag hai — .in pehla saal ₹300-500, renewal ₹700-800/saal. .com ₹800-1,200/saal. Hosting bilkul free hai.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">Kya domain bhi package mein include hai?<span>+</span></div>
-                <div class="faq-answer">Nahi, <strong>domain cost</strong> package se alag hai. Aapko domain alag se kharidna hoga — .in pehla saal ₹300-500 aur uske baad ₹700-800/saal. .com ₹800-1,200/saal. Hosting free hai.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">Kya main khud content update kar sakta hoon?<span>+</span></div>
-                <div class="faq-answer">Haan, hum <strong>CMS (Content Management System)</strong> install karte hain jisse aap khud content update kar sakte ho. (Yeh add-on ke roop mein available hai.)</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">Kya website mobile par chalegi?<span>+</span></div>
-                <div class="faq-answer">Haan, <strong>100% mobile responsive</strong>. Website har device par perfect chalegi.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">Kya aap SEO bhi karte ho?<span>+</span></div>
-                <div class="faq-answer">Haan, <strong>basic SEO</strong> package mein included hai. <strong>Advanced SEO</strong> ke liye ₹3,000 extra charge hota hai.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">Payment kaise karna hoga?<span>+</span></div>
-                <div class="faq-answer"><strong>50% advance</strong> aur <strong>50% delivery</strong> ke baad. Payment UPI, bank transfer, ya cash se kar sakte ho.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">Kya aap India mein website design services dete ho?<span>+</span></div>
-                <div class="faq-answer">Haan, hum <strong>India bhar mein website design services</strong> dete hain. Aap kisi bhi shehar se ho, hum aapke liye <strong>professional website</strong> bana sakte hain.</div>
-            </div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Website banane mein kitna time lagta hai?<span>+</span></div><div class="faq-answer">Usually <strong>3-7 working days</strong>, depending on the complexity of the <strong>website design project</strong>.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Website design ka kitna kharcha aayega?<span>+</span></div><div class="faq-answer"><strong>Starter website ₹2,999</strong> se shuru hota hai. Business ₹4,999 aur Premium ₹9,999. Domain ki keemat alag hai — .in pehla saal ₹300-500, renewal ₹700-800/saal. .com ₹800-1,200/saal. Hosting bilkul free hai.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Kya domain bhi package mein include hai?<span>+</span></div><div class="faq-answer">Nahi, <strong>domain cost</strong> package se alag hai. Aapko domain alag se kharidna hoga — .in pehla saal ₹300-500 aur uske baad ₹700-800/saal. .com ₹800-1,200/saal. Hosting free hai.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Kya main khud content update kar sakta hoon?<span>+</span></div><div class="faq-answer">Haan, hum <strong>CMS (Content Management System)</strong> install karte hain jisse aap khud content update kar sakte ho.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Kya website mobile par chalegi?<span>+</span></div><div class="faq-answer">Haan, <strong>100% mobile responsive</strong>. Website har device par perfect chalegi.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Kya aap SEO bhi karte ho?<span>+</span></div><div class="faq-answer">Haan, <strong>basic SEO</strong> package mein included hai. <strong>Advanced SEO</strong> ke liye ₹3,000 extra charge hota hai.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Payment kaise karna hoga?<span>+</span></div><div class="faq-answer"><strong>50% advance</strong> aur <strong>50% delivery</strong> ke baad. Payment UPI, bank transfer, ya cash se kar sakte ho.</div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Kya aap India mein website design services dete ho?<span>+</span></div><div class="faq-answer">Haan, hum <strong>India bhar mein website design services</strong> dete hain. Aap kisi bhi shehar se ho, hum aapke liye <strong>professional website</strong> bana sakte hain.</div></div>
         </div>
     </section>
 
@@ -662,18 +543,16 @@
                 <p>flipcodeo1@gmail.com</p>
                 <span class="contact-label">Phone (WhatsApp Only)</span>
                 <p>+91 8128302535</p>
-                <p style="font-size: 0.9rem; color: #777; margin-top: 5px;">This number is available for WhatsApp calls and messages only. Direct calls will not be answered.</p>
+                <p style="font-size: 0.9rem; color: #777; margin-top: 5px; text-align: left;">This number is available for WhatsApp calls and messages only. Direct calls will not be answered.</p>
                 <span class="contact-label">Location</span>
                 <p>India</p>
             </div>
             <div class="contact-form reveal">
-                <form onsubmit="sendToWhatsApp(); return false;">
-                    <input type="text" id="name" placeholder="Your Name" required>
-                    <input type="email" id="email" placeholder="Email Address" required>
-                    <input type="tel" id="phone" placeholder="Phone Number" required>
-                    <textarea id="message" rows="5" placeholder="Tell us about your website project..." required></textarea>
-                    <button type="submit">Send Message</button>
-                </form>
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Email Address" required>
+                <input type="tel" id="phone" placeholder="Phone Number" required>
+                <textarea id="message" rows="5" placeholder="Tell us about your website project..." required></textarea>
+                <button onclick="sendToWhatsApp()">Send Message</button>
             </div>
         </div>
     </section>
@@ -723,6 +602,9 @@
     </div>
 
     <script is:inline>
+        // ============ BLOG ARTICLES (JSON STRING - Astro compatible) ============
+        const blogArticles = JSON.parse('{"blog1":{"tag":"Business","title":"Why Your Small Business Needs a Website in 2026","body":"<p>In today digital age, if your small business is not online, you are losing customers. In 2026, 8 out of 10 people search on Google before choosing a business. If you do not have a website, they cannot find you.</p><h3>1. 24/7 Online Presence</h3><p>Your website works 24 hours a day, 7 days a week. Even while you sleep, your website tells customers about your business. It is a digital salesman that never gets tired.</p><h3>2. Credibility and Trust</h3><p>When a customer searches for you online and finds a professional website, they trust you more. Businesses without websites are still considered less trustworthy today.</p><h3>3. Stay Ahead of Competitors</h3><p>Many of your local competitors do not have a website. If you do, you stand out. Your visibility on Google Maps, local search, and online reviews increases dramatically.</p><h3>4. Cost-Effective Marketing</h3><p>Compared to newspaper ads, banners, or pamphlets, a professional website costs far less and works all year round. At Flipcodeo, websites start at just Rs 2,999.</p><h3>5. Customer Data Collection</h3><p>Through your website, you can collect customer emails, phone numbers, feedback, and promote your offers. This data helps your business grow.</p><h3>Conclusion</h3><p>If you want to seriously grow your small business in 2026, getting a website is essential. It is a one-time investment that pays off for years. Contact Flipcodeo today and take your business online.</p>"},"blog2":{"tag":"Pricing","title":"Website Design Cost in India - Complete Guide","body":"<p>The biggest question most business owners ask is - How much does a website cost? In this guide, we break down all website design costs in India so you have complete clarity.</p><h3>Types of Websites and Their Costs</h3><ul><li>Starter Website (1 Page): Rs 2,999 - perfect for local shops, freelancers, and professionals.</li><li>Business Website (3 Pages): Rs 4,999 - for small businesses that need services, about, and contact pages.</li><li>Premium Website (5 Pages): Rs 9,999 - for growing businesses that need a detailed website.</li><li>E-Commerce Website: Starting from Rs 15,000 - for online stores with payment gateway integration.</li></ul><h3>Domain Cost (Separate)</h3><p>Domain cost is not included in any package. It must be paid separately:</p><ul><li>.in Domain: First year Rs 300-500, renewal Rs 700-800/year</li><li>.com Domain: Rs 800-1,200/year</li><li>Hosting: Completely free on Netlify</li><li>SSL Certificate: Free (for HTTPS)</li></ul><h3>Add-on Services</h3><ul><li>Advanced SEO: +Rs 3,000</li><li>Payment Gateway: +Rs 5,000</li><li>Booking System: +Rs 8,000</li><li>Content Writing: +Rs 500 per page</li><li>Logo Design: +Rs 1,500</li></ul><h3>Do You Get Everything Together?</h3><p>At Flipcodeo, you get transparent pricing. No hidden charges. 50% advance and 50% after delivery - simple!</p><h3>Conclusion</h3><p>Website design cost depends on your needs. But starting at Rs 2,999, you can get a professional website. Contact us today for a free consultation!</p>"},"blog3":{"tag":"SEO","title":"How to Choose the Right Website Designer in India","body":"<p>Finding a website designer in India is easy, but choosing the right one is tough. Many people hunt for the cheapest designer and regret it later. Check these 7 things before hiring:</p><h3>1. Check Their Portfolio</h3><p>Look at their previous websites. Do they look professional? Do they work well on mobile? Is the speed good? The portfolio tells you how skilled the designer is.</p><h3>2. Responsive Design</h3><p>Over 70% of people browse on mobile today. If the designer does not build mobile responsive websites, move on. Mobile-first design is essential now.</p><h3>3. SEO Knowledge</h3><p>A good designer knows basic SEO - meta tags, headings, image optimization, page speed. If they cannot build an SEO-friendly website, you will not rank on Google.</p><h3>4. Speed and Performance</h3><p>How fast does the website load? If it takes more than 3 seconds, customers leave. A good designer writes clean code that loads fast.</p><h3>5. Communication</h3><p>Do they respond to your questions quickly? Do they understand your requirements? Good communication makes the project smooth.</p><h3>6. Pricing Transparency</h3><p>Do they tell you all costs upfront? There should be no hidden charges. At Flipcodeo, we offer transparent pricing.</p><h3>7. Support and Maintenance</h3><p>Do you get support after launch? For how long? Flipcodeo offers 15 days to 2 months of free support.</p><h3>Conclusion</h3><p>Choosing the right designer is crucial for your business. Do not just look at price - check quality, support, and SEO too. Contact us today!</p>"},"blog4":{"tag":"Design","title":"5 Benefits of Mobile Responsive Website Design","body":"<p>If your website does not work well on mobile today, you are losing customers. Mobile responsive design is no longer a luxury - it is a necessity. Here are 5 benefits:</p><h3>1. Better User Experience</h3><p>When someone opens your website on their phone and everything looks right - readable text, clickable buttons, fitting images - they are happy. A bad experience makes them leave instantly.</p><h3>2. Higher Google Rankings</h3><p>Google has prioritized mobile-friendly websites in rankings since 2015. Today, mobile responsiveness is a direct ranking factor. If your website is not mobile-friendly, Google will not show it on top.</p><h3>3. More Conversions</h3><p>Mobile users have different conversion behavior than desktop users. If your website runs smoothly on mobile, people stay longer, browse more, and buy more.</p><h3>4. Cost-Effective</h3><p>Building a separate mobile app costs lakhs. But a responsive website works on all devices at once - phone, tablet, desktop. One investment, presence everywhere.</p><h3>5. Future-Proof</h3><p>New devices keep coming - foldable phones, tablets, smart TVs. Responsive design automatically adjusts to all of them.</p><h3>Conclusion</h3><p>Mobile responsive website is a must-have for your business. All Flipcodeo websites are 100% mobile responsive. Get your website made today!</p>"},"blog5":{"tag":"Growth","title":"How a Website Can Grow Your Local Business","body":"<p>If you run a local business in India - whether it is a salon, gym, restaurant, or clinic - a professional website can completely transform your business. Here is how:</p><h3>1. Local Customers Can Find You</h3><p>When someone searches for salon near me or best gym in your city, Google shows businesses that have a website and are registered on Google Maps. Without a website, you do not appear in that list.</p><h3>2. 24/7 Booking and Enquiry</h3><p>With a contact form, WhatsApp button, or booking system on your website, you can receive enquiries even at night. You wake up to new leads.</p><h3>3. Brand Credibility</h3><p>A good website gives your local business a professional look like big brands. Customers feel you are serious and will provide good service.</p><h3>4. Customer Reviews and Testimonials</h3><p>You can display reviews from happy customers on your website. This social proof convinces new customers to trust you.</p><h3>5. Offers and Promotions</h3><p>You can easily update offers, discounts, and seasonal promotions on your website. Customers keep getting the latest deals, which motivates them to return.</p><h3>6. Stay Ahead of Competitors</h3><p>Many local businesses in your area do not have a website. If you do, you stand out as more professional.</p><h3>Conclusion</h3><p>A website brings new customers to your local business, builds credibility, and increases sales. Flipcodeo builds affordable websites for you - starting at just Rs 2,999.</p>"},"blog6":{"tag":"Tips","title":"10 Must-Have Features for Your Business Website","body":"<p>A good business website needs certain features. If you are getting a website made, make sure these 10 things are included:</p><h3>1. Mobile Responsive Design</h3><p>First - the website must work perfectly on mobile. Without this, everything else is useless.</p><h3>2. Fast Loading Speed</h3><p>The website should load in under 3 seconds. Slow websites drive customers away and Google ranks them lower.</p><h3>3. WhatsApp Integration</h3><p>WhatsApp is the most used app in India. With a WhatsApp button on your website, customers can message you instantly. Flipcodeo includes this in every website.</p><h3>4. Contact Form</h3><p>A simple contact form so customers can email you. Name, email, phone, and message - that is all you need.</p><h3>5. Clear Call-to-Action (CTA)</h3><p>Every page should have a clear CTA - Call Now, WhatsApp Us, Book Appointment, Buy Now. Customers should know what to do next.</p><h3>6. SEO-Friendly Structure</h3><p>Proper headings (H1, H2), meta tags, image alt text, and clean URLs. This is essential for Google ranking.</p><h3>7. Gallery / Portfolio</h3><p>If you have products, services, or past work, show photos. Visual proof convinces customers.</p><h3>8. Customer Testimonials</h3><p>Display reviews or video testimonials from happy customers. This builds trust.</p><h3>9. Social Media Links</h3><p>Link your Facebook, Instagram, LinkedIn, and YouTube profiles on your website. This strengthens your online presence.</p><h3>10. Google Analytics</h3><p>Install Analytics so you know how many people visit, where they come from, and what they view. Without data, there is no growth.</p><h3>Conclusion</h3><p>With these 10 features, your website becomes a complete business tool. Flipcodeo provides all these features in affordable packages. Plan your website today!</p>"}}');
+
         // ============ SPLASH SCREEN ============
         window.addEventListener('load', () => {
             setTimeout(() => {
@@ -799,13 +681,12 @@
             });
         });
 
-        // ============ SCROLL TO SECTION (pricing buttons) ============
+        // ============ FUNCTIONS ============
         function scrollToSection(id) {
             const section = document.getElementById(id);
             if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // ============ FAQ ============
         function toggleFaq(element) {
             const item = element.parentElement;
             item.classList.toggle('active');
@@ -813,163 +694,18 @@
             if (span) span.textContent = item.classList.contains('active') ? '−' : '+';
         }
 
-        // ============ BLOG ARTICLES ============
-        const blogArticles = {
-            blog1: {
-                tag: 'Business',
-                title: 'Why Your Small Business Needs a Website in 2026',
-                body: `
-                    <p>In today's digital age, if your small business isn't online, you're losing customers. In <strong>2026</strong>, 8 out of 10 people search on Google before choosing a business.</p>
-                    <h3>1. 24/7 Online Presence</h3>
-                    <p>Your website works 24 hours a day, 7 days a week. Even while you sleep, your website tells customers about your business.</p>
-                    <h3>2. Credibility and Trust</h3>
-                    <p>When a customer searches for you online and finds a <strong>professional website</strong>, they trust you more.</p>
-                    <h3>3. Stay Ahead of Competitors</h3>
-                    <p>Many of your local competitors don't have a website. If you do, you stand out.</p>
-                    <h3>4. Cost-Effective Marketing</h3>
-                    <p>Compared to newspaper ads, a <strong>professional website</strong> costs far less. At Flipcodeo, websites start at just <strong>₹2,999</strong>.</p>
-                    <h3>5. Customer Data Collection</h3>
-                    <p>Through your website, you can collect customer emails, phone numbers, feedback, and promote your offers.</p>
-                    <h3>Conclusion</h3>
-                    <p>If you want to seriously grow your small business in 2026, <strong>getting a website is essential</strong>. Contact Flipcodeo today!</p>
-                `
-            },
-            blog2: {
-                tag: 'Pricing',
-                title: 'Website Design Cost in India – Complete Guide',
-                body: `
-                    <p>The biggest question most business owners ask is — <strong>"How much does a website cost?"</strong> Here's a complete breakdown.</p>
-                    <h3>Types of Websites and Their Costs</h3>
-                    <ul>
-                        <li><strong>Starter (1 Page):</strong> ₹2,999</li>
-                        <li><strong>Business (3 Pages):</strong> ₹4,999</li>
-                        <li><strong>Premium (5 Pages):</strong> ₹9,999</li>
-                        <li><strong>E-Commerce:</strong> From ₹15,000</li>
-                    </ul>
-                    <h3>Domain Cost (Separate)</h3>
-                    <ul>
-                        <li><strong>.in Domain:</strong> First year ₹300-500, renewal ₹700-800/year</li>
-                        <li><strong>.com Domain:</strong> ₹800-1,200/year</li>
-                        <li><strong>Hosting:</strong> Free on Netlify</li>
-                    </ul>
-                    <h3>Add-ons</h3>
-                    <ul>
-                        <li>Advanced SEO: +₹3,000</li>
-                        <li>Payment Gateway: +₹5,000</li>
-                        <li>Booking System: +₹8,000</li>
-                    </ul>
-                    <h3>Conclusion</h3>
-                    <p>Starting at ₹2,999, you can get a professional website that takes your business online. Contact us today!</p>
-                `
-            },
-            blog3: {
-                tag: 'SEO',
-                title: 'How to Choose the Right Website Designer in India',
-                body: `
-                    <p>Finding a <strong>website designer</strong> in India is easy, but choosing the right one is tough. Check these 7 things:</p>
-                    <h3>1. Check Their Portfolio</h3>
-                    <p>Look at their previous websites. Do they look professional? Do they work on mobile?</p>
-                    <h3>2. Responsive Design</h3>
-                    <p>Over 70% of people browse on mobile. <strong>Mobile-first design</strong> is essential.</p>
-                    <h3>3. SEO Knowledge</h3>
-                    <p>A good designer knows basic SEO — meta tags, headings, page speed.</p>
-                    <h3>4. Speed and Performance</h3>
-                    <p>If the website takes more than 3 seconds to load, customers leave.</p>
-                    <h3>5. Communication</h3>
-                    <p>Do they respond to your questions quickly?</p>
-                    <h3>6. Pricing Transparency</h3>
-                    <p>No hidden charges. At Flipcodeo, we offer transparent pricing.</p>
-                    <h3>7. Support</h3>
-                    <p>Do you get support after launch? Flipcodeo offers 15 days to 2 months free support.</p>
-                    <h3>Conclusion</h3>
-                    <p>Don't just look at price — check quality, support, and SEO too. Contact Flipcodeo today!</p>
-                `
-            },
-            blog4: {
-                tag: 'Design',
-                title: '5 Benefits of Mobile Responsive Website Design',
-                body: `
-                    <p>If your website doesn't work well on mobile, you're losing customers. <strong>Mobile responsive design</strong> is a necessity. 5 benefits:</p>
-                    <h3>1. Better User Experience</h3>
-                    <p>When someone opens your website on phone and everything looks right, they're happy.</p>
-                    <h3>2. Higher Google Rankings</h3>
-                    <p>Google has prioritized <strong>mobile-friendly websites</strong> in rankings since 2015.</p>
-                    <h3>3. More Conversions</h3>
-                    <p>If your website runs smoothly on mobile, people stay longer and buy more.</p>
-                    <h3>4. Cost-Effective</h3>
-                    <p>A <strong>responsive website</strong> works on all devices. One investment, presence everywhere.</p>
-                    <h3>5. Future-Proof</h3>
-                    <p>New devices keep coming. Responsive design adjusts automatically.</p>
-                    <h3>Conclusion</h3>
-                    <p>All Flipcodeo websites are 100% mobile responsive. Get yours today!</p>
-                `
-            },
-            blog5: {
-                tag: 'Growth',
-                title: 'How a Website Can Grow Your Local Business',
-                body: `
-                    <p>If you run a local business in India — salon, gym, restaurant, or clinic — a <strong>professional website</strong> can transform your business.</p>
-                    <h3>1. Local Customers Can Find You</h3>
-                    <p>When someone searches "salon near me", Google shows businesses with websites and Google Maps.</p>
-                    <h3>2. 24/7 Booking and Enquiry</h3>
-                    <p>With a contact form or WhatsApp button, you can receive enquiries even at night.</p>
-                    <h3>3. Brand Credibility</h3>
-                    <p>A good website gives your business a professional look.</p>
-                    <h3>4. Customer Reviews</h3>
-                    <p>Display reviews from happy customers. This builds trust.</p>
-                    <h3>5. Offers and Promotions</h3>
-                    <p>Update offers and promotions easily on your website.</p>
-                    <h3>6. Stay Ahead of Competitors</h3>
-                    <p>Many local businesses don't have websites. If you do, you stand out.</p>
-                    <h3>Conclusion</h3>
-                    <p>Flipcodeo builds affordable websites for you — starting at ₹2,999. Contact us today!</p>
-                `
-            },
-            blog6: {
-                tag: 'Tips',
-                title: '10 Must-Have Features for Your Business Website',
-                body: `
-                    <p>A good business website needs certain features. Make sure these 10 are included:</p>
-                    <h3>1. Mobile Responsive Design</h3>
-                    <p>The website must work perfectly on mobile.</p>
-                    <h3>2. Fast Loading Speed</h3>
-                    <p>Should load in under 3 seconds.</p>
-                    <h3>3. WhatsApp Integration</h3>
-                    <p>WhatsApp is the most used app in India. Add a WhatsApp button.</p>
-                    <h3>4. Contact Form</h3>
-                    <p>A simple contact form so customers can email you.</p>
-                    <h3>5. Clear Call-to-Action</h3>
-                    <p>Every page should have a clear CTA — "Call Now", "Book Appointment".</p>
-                    <h3>6. SEO-Friendly Structure</h3>
-                    <p>Proper headings, meta tags, image alt text, clean URLs.</p>
-                    <h3>7. Gallery / Portfolio</h3>
-                    <p>Show photos of products, services, or past work.</p>
-                    <h3>8. Customer Testimonials</h3>
-                    <p>Display reviews from happy customers.</p>
-                    <h3>9. Social Media Links</h3>
-                    <p>Link your Facebook, Instagram, LinkedIn profiles.</p>
-                    <h3>10. Google Analytics</h3>
-                    <p>Install Analytics to track visitors.</p>
-                    <h3>Conclusion</h3>
-                    <p>Flipcodeo provides all these features in affordable packages. Contact us today!</p>
-                `
-            }
-        };
-
         function openBlog(articleId) {
             const article = blogArticles[articleId];
             if (!article) return;
             document.getElementById('modalTag').textContent = article.tag;
             document.getElementById('modalTitle').textContent = article.title;
             document.getElementById('modalBody').innerHTML = article.body;
-            const modal = document.getElementById('blogModal');
-            modal.classList.add('active');
+            document.getElementById('blogModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
         function closeBlog() {
-            const modal = document.getElementById('blogModal');
-            modal.classList.remove('active');
+            document.getElementById('blogModal').classList.remove('active');
             document.body.style.overflow = '';
         }
 
@@ -980,7 +716,6 @@
             });
         }
 
-        // ============ PORTFOLIO LIGHTBOX ============
         function openPortfolio(imgSrc, caption) {
             const lightbox = document.getElementById('portfolioLightbox');
             document.getElementById('portfolioLightboxImg').src = imgSrc;
@@ -995,7 +730,6 @@
             document.body.style.overflow = '';
         }
 
-        // ============ ESCAPE KEY ============
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 const bm = document.getElementById('blogModal');
@@ -1011,19 +745,24 @@
             }
         });
 
-        // ============ CONTACT FORM ============
         function sendToWhatsApp() {
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
             const message = document.getElementById('message').value;
-            const text = `Name: ${name}%0AEmail: ${email}%0APhone: ${phone}%0AProject: ${message}`;
-            window.open(`https://wa.me/918128302535?text=${text}`, '_blank');
+            const text = 'Name: ' + name + '%0AEmail: ' + email + '%0APhone: ' + phone + '%0AProject: ' + message;
+            window.open('https://wa.me/918128302535?text=' + text, '_blank');
         }
-    </script>
 
-</body>
-</html>
+        // ============ MAKE FUNCTIONS GLOBAL (for onclick attributes) ============
+        window.openBlog = openBlog;
+        window.closeBlog = closeBlog;
+        window.openPortfolio = openPortfolio;
+        window.closePortfolio = closePortfolio;
+        window.toggleFaq = toggleFaq;
+        window.scrollToSection = scrollToSection;
+        window.sendToWhatsApp = sendToWhatsApp;
+    </script>
 
 </body>
 </html>
