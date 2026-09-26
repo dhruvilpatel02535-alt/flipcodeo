@@ -11,6 +11,15 @@ const about = aboutEntries[0];
 
 const servicesEntries = await getCollection('services');
 const servicesData = servicesEntries[0];
+
+const pricingEntries = await getCollection('pricing');
+const pricing = pricingEntries[0];
+
+const addonsEntries = await getCollection('addons');
+const addonsData = addonsEntries[0];
+
+const processEntries = await getCollection('process');
+const processData = processEntries[0];
 ---
 
 <!DOCTYPE html>
@@ -380,7 +389,8 @@ const servicesData = servicesEntries[0];
             <div class="service-card"><span class="service-icon">{servicesData.data.service6_icon}</span><h3>{servicesData.data.service6_title}</h3><p>{servicesData.data.service6_desc}</p></div>
         </div>
     </section>
-    <!-- PRICING -->
+    
+   <!-- PRICING -->
     <section id="pricing">
         <div class="reveal">
             <div class="section-tag">Pricing</div>
@@ -389,36 +399,53 @@ const servicesData = servicesEntries[0];
         </div>
         <div class="pricing-grid stagger">
             <div class="pricing-card">
-                <h3>Starter</h3>
-                <div class="price">₹2,999</div>
+                <h3>{pricing.data.plan1_name}</h3>
+                <div class="price">{pricing.data.plan1_price}</div>
                 <div class="price-note">One-time payment (domain extra)</div>
                 <ul>
-                    <li>1 Page Website</li><li>Mobile Responsive</li><li>WhatsApp Button</li><li>Basic SEO</li><li>15 Days Support</li>
-                    <li class="muted">Contact Form</li><li class="muted">Gallery</li>
+                    <li>1 Page Website</li>
+                    <li>Mobile Responsive</li>
+                    <li>WhatsApp Button</li>
+                    <li>Basic SEO</li>
+                    <li>15 Days Support</li>
+                    <li class="muted">Contact Form</li>
+                    <li class="muted">Gallery</li>
                 </ul>
                 <button class="btn" onclick="scrollToSection('contact')">Choose Starter</button>
             </div>
             <div class="pricing-card popular">
-                <h3>Business</h3>
-                <div class="price">₹4,999</div>
+                <h3>{pricing.data.plan2_name}</h3>
+                <div class="price">{pricing.data.plan2_price}</div>
                 <div class="price-note">One-time payment (domain extra)</div>
                 <ul>
-                    <li>3 Pages Website</li><li>Mobile Responsive</li><li>WhatsApp Button</li><li>Contact Form</li><li>Gallery Section</li><li>Basic SEO</li><li>1 Month Support</li>
+                    <li>3 Pages Website</li>
+                    <li>Mobile Responsive</li>
+                    <li>WhatsApp Button</li>
+                    <li>Contact Form</li>
+                    <li>Gallery Section</li>
+                    <li>Basic SEO</li>
+                    <li>1 Month Support</li>
                 </ul>
                 <button class="btn" onclick="scrollToSection('contact')">Choose Business</button>
             </div>
             <div class="pricing-card">
-                <h3>Premium</h3>
-                <div class="price">₹9,999</div>
+                <h3>{pricing.data.plan3_name}</h3>
+                <div class="price">{pricing.data.plan3_price}</div>
                 <div class="price-note">One-time payment (domain extra)</div>
                 <ul>
-                    <li>5 Pages Website</li><li>Mobile Responsive</li><li>WhatsApp Button</li><li>Contact Form + Gallery</li><li>Basic SEO</li><li>Priority Delivery</li><li>2 Months Support</li>
+                    <li>5 Pages Website</li>
+                    <li>Mobile Responsive</li>
+                    <li>WhatsApp Button</li>
+                    <li>Contact Form + Gallery</li>
+                    <li>Basic SEO</li>
+                    <li>Priority Delivery</li>
+                    <li>2 Months Support</li>
                 </ul>
                 <button class="btn" onclick="scrollToSection('contact')">Choose Premium</button>
             </div>
         </div>
     </section>
-
+    
     <!-- ADD-ONS -->
     <section id="addons">
         <div class="reveal">

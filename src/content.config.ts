@@ -61,4 +61,65 @@ const services = defineCollection({
   }),
 });
 
-export const collections = { portfolio, hero, about, services };
+const pricing = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/pricing' }),
+  schema: z.object({
+    plan1_name: z.string(),
+    plan1_price: z.string(),
+    plan1_features: z.string(),
+    plan1_muted: z.string(),
+    plan1_popular: z.boolean(),
+    plan2_name: z.string(),
+    plan2_price: z.string(),
+    plan2_features: z.string(),
+    plan2_muted: z.string(),
+    plan2_popular: z.boolean(),
+    plan3_name: z.string(),
+    plan3_price: z.string(),
+    plan3_features: z.string(),
+    plan3_muted: z.string(),
+    plan3_popular: z.boolean(),
+  }),
+});
+
+const addons = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/addons' }),
+  schema: z.object({
+    addon1_name: z.string(),
+    addon1_note: z.string(),
+    addon1_price: z.string(),
+    addon2_name: z.string(),
+    addon2_note: z.string(),
+    addon2_price: z.string(),
+    addon3_name: z.string(),
+    addon3_note: z.string(),
+    addon3_price: z.string(),
+    addon4_name: z.string(),
+    addon4_note: z.string(),
+    addon4_price: z.string(),
+    addon5_name: z.string(),
+    addon5_note: z.string(),
+    addon5_price: z.string(),
+    addon6_name: z.string(),
+    addon6_note: z.string(),
+    addon6_price: z.string(),
+  }),
+});
+
+const process = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/process' }),
+  schema: z.object({
+    step1_title: z.string(),
+    step1_desc: z.string(),
+    step2_title: z.string(),
+    step2_desc: z.string(),
+    step3_title: z.string(),
+    step3_desc: z.string(),
+    step4_title: z.string(),
+    step4_desc: z.string(),
+    step5_title: z.string(),
+    step5_desc: z.string(),
+  }),
+});
+
+export const collections = { portfolio, hero, about, services, pricing, addons, process };

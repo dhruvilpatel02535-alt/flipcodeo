@@ -62,6 +62,64 @@ collections:
       - { label: "Service 6 Title", name: "service6_title", widget: "string" }
       - { label: "Service 6 Description", name: "service6_desc", widget: "text" }
 
+  - name: "pricing"
+    label: "Pricing Plans"
+    folder: "src/content/pricing"
+    create: false
+    delete: false
+    slug: "{{slug}}"
+    fields:
+      - { label: "Plan 1 Name", name: "plan1_name", widget: "string" }
+      - { label: "Plan 1 Price", name: "plan1_price", widget: "string" }
+      - { label: "Plan 2 Name", name: "plan2_name", widget: "string" }
+      - { label: "Plan 2 Price", name: "plan2_price", widget: "string" }
+      - { label: "Plan 3 Name", name: "plan3_name", widget: "string" }
+      - { label: "Plan 3 Price", name: "plan3_price", widget: "string" }
+
+  - name: "addons"
+    label: "Add-ons"
+    folder: "src/content/addons"
+    create: false
+    delete: false
+    slug: "{{slug}}"
+    fields:
+      - { label: "Add-on 1 Name", name: "addon1_name", widget: "string" }
+      - { label: "Add-on 1 Note", name: "addon1_note", widget: "string" }
+      - { label: "Add-on 1 Price", name: "addon1_price", widget: "string" }
+      - { label: "Add-on 2 Name", name: "addon2_name", widget: "string" }
+      - { label: "Add-on 2 Note", name: "addon2_note", widget: "string" }
+      - { label: "Add-on 2 Price", name: "addon2_price", widget: "string" }
+      - { label: "Add-on 3 Name", name: "addon3_name", widget: "string" }
+      - { label: "Add-on 3 Note", name: "addon3_note", widget: "string" }
+      - { label: "Add-on 3 Price", name: "addon3_price", widget: "string" }
+      - { label: "Add-on 4 Name", name: "addon4_name", widget: "string" }
+      - { label: "Add-on 4 Note", name: "addon4_note", widget: "string" }
+      - { label: "Add-on 4 Price", name: "addon4_price", widget: "string" }
+      - { label: "Add-on 5 Name", name: "addon5_name", widget: "string" }
+      - { label: "Add-on 5 Note", name: "addon5_note", widget: "string" }
+      - { label: "Add-on 5 Price", name: "addon5_price", widget: "string" }
+      - { label: "Add-on 6 Name", name: "addon6_name", widget: "string" }
+      - { label: "Add-on 6 Note", name: "addon6_note", widget: "string" }
+      - { label: "Add-on 6 Price", name: "addon6_price", widget: "string" }
+
+  - name: "process"
+    label: "Process Steps"
+    folder: "src/content/process"
+    create: false
+    delete: false
+    slug: "{{slug}}"
+    fields:
+      - { label: "Step 1 Title", name: "step1_title", widget: "string" }
+      - { label: "Step 1 Description", name: "step1_desc", widget: "text" }
+      - { label: "Step 2 Title", name: "step2_title", widget: "string" }
+      - { label: "Step 2 Description", name: "step2_desc", widget: "text" }
+      - { label: "Step 3 Title", name: "step3_title", widget: "string" }
+      - { label: "Step 3 Description", name: "step3_desc", widget: "text" }
+      - { label: "Step 4 Title", name: "step4_title", widget: "string" }
+      - { label: "Step 4 Description", name: "step4_desc", widget: "text" }
+      - { label: "Step 5 Title", name: "step5_title", widget: "string" }
+      - { label: "Step 5 Description", name: "step5_desc", widget: "text" }
+
   - name: "portfolio"
     label: "Portfolio Photos"
     folder: "src/content/portfolio"
