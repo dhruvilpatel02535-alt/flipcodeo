@@ -6,6 +6,62 @@ media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+  - name: "hero"
+    label: "Hero Section"
+    folder: "src/content/hero"
+    create: false
+    delete: false
+    slug: "{{slug}}"
+    fields:
+      - { label: "Tagline", name: "tagline", widget: "string" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Subtitle", name: "subtitle", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Price Text", name: "price", widget: "string" }
+      - { label: "Button 1 Text", name: "btn1_text", widget: "string" }
+      - { label: "Button 1 Link", name: "btn1_link", widget: "string" }
+      - { label: "Button 2 Text", name: "btn2_text", widget: "string" }
+      - { label: "Button 2 Link", name: "btn2_link", widget: "string" }
+
+  - name: "about"
+    label: "About Section"
+    folder: "src/content/about"
+    create: false
+    delete: false
+    slug: "{{slug}}"
+    fields:
+      - { label: "Heading", name: "heading", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Paragraph 1", name: "paragraph1", widget: "text" }
+      - { label: "Paragraph 2", name: "paragraph2", widget: "text" }
+      - { label: "Skills (comma separated)", name: "skills", widget: "string" }
+
+  - name: "services"
+    label: "Services Section"
+    folder: "src/content/services"
+    create: false
+    delete: false
+    slug: "{{slug}}"
+    fields:
+      - { label: "Service 1 Icon", name: "service1_icon", widget: "string" }
+      - { label: "Service 1 Title", name: "service1_title", widget: "string" }
+      - { label: "Service 1 Description", name: "service1_desc", widget: "text" }
+      - { label: "Service 2 Icon", name: "service2_icon", widget: "string" }
+      - { label: "Service 2 Title", name: "service2_title", widget: "string" }
+      - { label: "Service 2 Description", name: "service2_desc", widget: "text" }
+      - { label: "Service 3 Icon", name: "service3_icon", widget: "string" }
+      - { label: "Service 3 Title", name: "service3_title", widget: "string" }
+      - { label: "Service 3 Description", name: "service3_desc", widget: "text" }
+      - { label: "Service 4 Icon", name: "service4_icon", widget: "string" }
+      - { label: "Service 4 Title", name: "service4_title", widget: "string" }
+      - { label: "Service 4 Description", name: "service4_desc", widget: "text" }
+      - { label: "Service 5 Icon", name: "service5_icon", widget: "string" }
+      - { label: "Service 5 Title", name: "service5_title", widget: "string" }
+      - { label: "Service 5 Description", name: "service5_desc", widget: "text" }
+      - { label: "Service 6 Icon", name: "service6_icon", widget: "string" }
+      - { label: "Service 6 Title", name: "service6_title", widget: "string" }
+      - { label: "Service 6 Description", name: "service6_desc", widget: "text" }
+
   - name: "portfolio"
     label: "Portfolio Photos"
     folder: "src/content/portfolio"

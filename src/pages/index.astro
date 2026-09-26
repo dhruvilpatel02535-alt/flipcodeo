@@ -2,6 +2,15 @@
 import { getCollection } from 'astro:content';
 const photos = await getCollection('portfolio');
 const sortedPhotos = photos.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+
+const heroEntries = await getCollection('hero');
+const hero = heroEntries[0];
+
+const aboutEntries = await getCollection('about');
+const about = aboutEntries[0];
+
+const servicesEntries = await getCollection('services');
+const servicesData = servicesEntries[0];
 ---
 
 <!DOCTYPE html>
@@ -321,15 +330,15 @@ const sortedPhotos = photos.sort((a, b) => (a.data.order || 0) - (b.data.order |
 
     <!-- HERO -->
     <section class="hero" id="home">
-        <div class="hero-tagline">Premium Website Design Studio</div>
+        <div class="hero-tagline">{hero.data.tagline}</div>
         <h1 class="hero-title" id="heroTitle"></h1>
         <div class="hero-divider"></div>
-        <div class="hero-subtitle">Professional Website Design Services in India</div>
-        <p class="hero-desc">We create <strong>responsive, SEO-friendly websites</strong> for small businesses, startups, and local shops across India. Get your business online with a <strong>professional website design</strong> that drives results.</p>
-        <div class="hero-price">Starting at just ₹2,999</div>
+        <div class="hero-subtitle">{hero.data.subtitle}</div>
+        <p class="hero-desc">{hero.data.description}</p>
+        <div class="hero-price">{hero.data.price}</div>
         <div class="hero-btns">
-            <a href="#services" class="magnetic-btn">Our Services</a>
-            <a href="#contact" class="magnetic-btn" style="background: transparent; color: #111; border: 1px solid #111;">Get In Touch</a>
+            <a href={hero.data.btn1_link} class="magnetic-btn">{hero.data.btn1_text}</a>
+            <a href={hero.data.btn2_link} class="magnetic-btn" style="background: transparent; color: #111; border: 1px solid #111;">{hero.data.btn2_text}</a>
         </div>
     </section>
 
@@ -341,13 +350,15 @@ const sortedPhotos = photos.sort((a, b) => (a.data.order || 0) - (b.data.order |
             <p class="section-sub">Flipcodeo is a professional website design company in India.</p>
         </div>
         <div class="about-section reveal">
-            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800" alt="Workspace" class="about-img">
+            <img src={about.data.image} alt="Workspace" class="about-img">
             <div class="about-text">
-                <h3>Building Websites That Build Businesses</h3>
-                <p>Flipcodeo is a <strong>professional website design company in India</strong>. We help small businesses, startups, and local shops establish their online presence with <strong>custom website design</strong> and <strong>website development services</strong>.</p>
-                <p>Our mission is to make <strong>professional website design</strong> affordable for every business in India. Whether you need a <strong>responsive website</strong> for your restaurant, gym, salon, or clinic — we've got you covered.</p>
+                <h3>{about.data.heading}</h3>
+                <p>{about.data.paragraph1}</p>
+                <p>{about.data.paragraph2}</p>
                 <div class="skills">
-                    <span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span><span>WordPress</span><span>SEO</span>
+                    {about.data.skills.split(',').map((skill) => (
+                        <span>{skill.trim()}</span>
+                    ))}
                 </div>
             </div>
         </div>
@@ -358,18 +369,17 @@ const sortedPhotos = photos.sort((a, b) => (a.data.order || 0) - (b.data.order |
         <div class="reveal">
             <div class="section-tag">What We Do</div>
             <h2 class="section-title">Our Services</h2>
-            <p class="section-sub">We offer complete <strong>website design and development services</strong> for businesses in India.</p>
+            <p class="section-sub">We offer complete website design and development services.</p>
         </div>
         <div class="services-grid stagger">
-            <div class="service-card"><span class="service-icon">🎨</span><h3>Custom Website Design</h3><p>We create <strong>custom website designs</strong> that reflect your unique brand identity. Perfect for small businesses looking to stand out online.</p></div>
-            <div class="service-card"><span class="service-icon">⚡</span><h3>Website Development</h3><p>Our <strong>website development services</strong> use clean, optimized code for blazing-fast performance and better Google rankings.</p></div>
-            <div class="service-card"><span class="service-icon">🛒</span><h3>E-Commerce Website</h3><p>We build <strong>e-commerce websites</strong> with payment gateway integration, product management, and secure checkout.</p></div>
-            <div class="service-card"><span class="service-icon">📱</span><h3>Mobile Responsive Design</h3><p>All our websites are <strong>mobile responsive</strong>, ensuring perfect experience on every device — phone, tablet, desktop.</p></div>
-            <div class="service-card"><span class="service-icon">🔍</span><h3>SEO-Friendly Websites</h3><p>We create <strong>SEO-friendly websites</strong> that help your business rank higher on Google and attract more customers.</p></div>
-            <div class="service-card"><span class="service-icon">🛡️</span><h3>Website Maintenance</h3><p>Ongoing <strong>website maintenance services</strong> including updates, backups, and support for peace of mind.</p></div>
+            <div class="service-card"><span class="service-icon">{servicesData.data.service1_icon}</span><h3>{servicesData.data.service1_title}</h3><p>{servicesData.data.service1_desc}</p></div>
+            <div class="service-card"><span class="service-icon">{servicesData.data.service2_icon}</span><h3>{servicesData.data.service2_title}</h3><p>{servicesData.data.service2_desc}</p></div>
+            <div class="service-card"><span class="service-icon">{servicesData.data.service3_icon}</span><h3>{servicesData.data.service3_title}</h3><p>{servicesData.data.service3_desc}</p></div>
+            <div class="service-card"><span class="service-icon">{servicesData.data.service4_icon}</span><h3>{servicesData.data.service4_title}</h3><p>{servicesData.data.service4_desc}</p></div>
+            <div class="service-card"><span class="service-icon">{servicesData.data.service5_icon}</span><h3>{servicesData.data.service5_title}</h3><p>{servicesData.data.service5_desc}</p></div>
+            <div class="service-card"><span class="service-icon">{servicesData.data.service6_icon}</span><h3>{servicesData.data.service6_title}</h3><p>{servicesData.data.service6_desc}</p></div>
         </div>
     </section>
-
     <!-- PRICING -->
     <section id="pricing">
         <div class="reveal">
