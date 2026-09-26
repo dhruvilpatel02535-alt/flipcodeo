@@ -64,21 +64,13 @@ const services = defineCollection({
 const pricing = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/pricing' }),
   schema: z.object({
-    plan1_name: z.string(),
-    plan1_price: z.string(),
-    plan1_features: z.string(),
-    plan1_muted: z.string(),
-    plan1_popular: z.boolean(),
-    plan2_name: z.string(),
-    plan2_price: z.string(),
-    plan2_features: z.string(),
-    plan2_muted: z.string(),
-    plan2_popular: z.boolean(),
-    plan3_name: z.string(),
-    plan3_price: z.string(),
-    plan3_features: z.string(),
-    plan3_muted: z.string(),
-    plan3_popular: z.boolean(),
+    name: z.string(),
+    price: z.string(),
+    note: z.string(),
+    features: z.string(),
+    muted: z.string(),
+    popular: z.boolean(),
+    order: z.number().default(0),
   }),
 });
 

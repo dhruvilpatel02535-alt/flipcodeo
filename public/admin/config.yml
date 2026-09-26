@@ -65,17 +65,18 @@ collections:
   - name: "pricing"
     label: "Pricing Plans"
     folder: "src/content/pricing"
-    create: false
-    delete: false
+    create: true
+    delete: true
     slug: "{{slug}}"
     fields:
-      - { label: "Plan 1 Name", name: "plan1_name", widget: "string" }
-      - { label: "Plan 1 Price", name: "plan1_price", widget: "string" }
-      - { label: "Plan 2 Name", name: "plan2_name", widget: "string" }
-      - { label: "Plan 2 Price", name: "plan2_price", widget: "string" }
-      - { label: "Plan 3 Name", name: "plan3_name", widget: "string" }
-      - { label: "Plan 3 Price", name: "plan3_price", widget: "string" }
-
+      - { label: "Plan Name", name: "name", widget: "string" }
+      - { label: "Price", name: "price", widget: "string" }
+      - { label: "Note", name: "note", widget: "string", default: "One-time payment (domain extra)" }
+      - { label: "Features (comma separated)", name: "features", widget: "text" }
+      - { label: "Muted Features (comma separated)", name: "muted", widget: "text", required: false }
+      - { label: "Popular (Most Popular badge)", name: "popular", widget: "boolean", default: false }
+      - { label: "Order", name: "order", widget: "number", default: 1 }
+      
   - name: "addons"
     label: "Add-ons"
     folder: "src/content/addons"

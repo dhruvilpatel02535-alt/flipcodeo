@@ -13,7 +13,7 @@ const servicesEntries = await getCollection('services');
 const servicesData = servicesEntries[0];
 
 const pricingEntries = await getCollection('pricing');
-const pricing = pricingEntries[0];
+const sortedPricing = pricingEntries.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
 
 const addonsEntries = await getCollection('addons');
 const addonsData = addonsEntries[0];
@@ -398,51 +398,22 @@ const processData = processEntries[0];
             <p class="section-sub">Affordable <strong>website design packages</strong> for every business. No hidden charges.</p>
         </div>
         <div class="pricing-grid stagger">
-            <div class="pricing-card">
-                <h3>{pricing.data.plan1_name}</h3>
-                <div class="price">{pricing.data.plan1_price}</div>
-                <div class="price-note">One-time payment (domain extra)</div>
-                <ul>
-                    <li>1 Page Website</li>
-                    <li>Mobile Responsive</li>
-                    <li>WhatsApp Button</li>
-                    <li>Basic SEO</li>
-                    <li>15 Days Support</li>
-                    <li class="muted">Contact Form</li>
-                    <li class="muted">Gallery</li>
-                </ul>
-                <button class="btn" onclick="scrollToSection('contact')">Choose Starter</button>
-            </div>
-            <div class="pricing-card popular">
-                <h3>{pricing.data.plan2_name}</h3>
-                <div class="price">{pricing.data.plan2_price}</div>
-                <div class="price-note">One-time payment (domain extra)</div>
-                <ul>
-                    <li>3 Pages Website</li>
-                    <li>Mobile Responsive</li>
-                    <li>WhatsApp Button</li>
-                    <li>Contact Form</li>
-                    <li>Gallery Section</li>
-                    <li>Basic SEO</li>
-                    <li>1 Month Support</li>
-                </ul>
-                <button class="btn" onclick="scrollToSection('contact')">Choose Business</button>
-            </div>
-            <div class="pricing-card">
-                <h3>{pricing.data.plan3_name}</h3>
-                <div class="price">{pricing.data.plan3_price}</div>
-                <div class="price-note">One-time payment (domain extra)</div>
-                <ul>
-                    <li>5 Pages Website</li>
-                    <li>Mobile Responsive</li>
-                    <li>WhatsApp Button</li>
-                    <li>Contact Form + Gallery</li>
-                    <li>Basic SEO</li>
-                    <li>Priority Delivery</li>
-                    <li>2 Months Support</li>
-                </ul>
-                <button class="btn" onclick="scrollToSection('contact')">Choose Premium</button>
-            </div>
+            {sortedPricing.map((plan) => (
+                <div class={`pricing-card ${plan.data.popular ? 'popular' : ''}`}>
+                    <h3>{plan.data.name}</h3>
+                    <div class="price">{plan.data.price}</div>
+                    <div class="price-note">{plan.data.note}</div>
+                    <ul>
+                        {plan.data.features.split(',').map((f) => (
+                            <li>{f.trim()}</li>
+                        ))}
+                        {plan.data.muted.split(',').filter(m => m.trim()).map((m) => (
+                            <li class="muted">{m.trim()}</li>
+                        ))}
+                    </ul>
+                    <button class="btn" onclick="scrollToSection('contact')">Choose {plan.data.name}</button>
+                </div>
+            ))}
         </div>
     </section>
     
