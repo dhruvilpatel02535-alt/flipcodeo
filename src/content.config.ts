@@ -135,4 +135,16 @@ const footer = defineCollection({
   }),
 });
 
-export const collections = { portfolio, hero, about, services, pricing, addons, process, why, faq, blog, contact, footer };
+const domainInfo = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/domainInfo' }),
+  schema: z.object({
+    heading: z.string(),
+    description: z.string(),
+    rows: z.array(z.object({
+      label: z.string(),
+      value: z.string(),
+    })),
+  }),
+});
+
+export const collections = { portfolio, hero, about, services, pricing, addons, process, why, faq, blog, contact, footer, domainInfo };

@@ -151,7 +151,23 @@ collections:
       - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }
       - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
       - { label: "Twitter URL", name: "twitter", widget: "string", required: false }
-
+  
+  - name: "domainInfo"
+    label: "Domain Info Table"
+    folder: "src/content/domainInfo"
+    create: false
+    delete: false
+    slug: "{{slug}}"
+    fields:
+      - { label: "Heading", name: "heading", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - label: "Table Rows"
+        name: "rows"
+        widget: "list"
+        fields:
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "Value", name: "value", widget: "string" }
+          
   - name: "portfolio"
     label: "Portfolio Photos"
     folder: "src/content/portfolio"
