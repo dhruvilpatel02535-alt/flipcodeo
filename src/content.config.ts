@@ -40,24 +40,10 @@ const about = defineCollection({
 const services = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/services' }),
   schema: z.object({
-    service1_icon: z.string(),
-    service1_title: z.string(),
-    service1_desc: z.string(),
-    service2_icon: z.string(),
-    service2_title: z.string(),
-    service2_desc: z.string(),
-    service3_icon: z.string(),
-    service3_title: z.string(),
-    service3_desc: z.string(),
-    service4_icon: z.string(),
-    service4_title: z.string(),
-    service4_desc: z.string(),
-    service5_icon: z.string(),
-    service5_title: z.string(),
-    service5_desc: z.string(),
-    service6_icon: z.string(),
-    service6_title: z.string(),
-    service6_desc: z.string(),
+    icon: z.string(),
+    title: z.string(),
+    description: z.string(),
+    order: z.number().default(0),
   }),
 });
 
