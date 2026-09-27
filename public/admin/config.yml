@@ -78,20 +78,13 @@ collections:
   - name: "process"
     label: "Process Steps"
     folder: "src/content/process"
-    create: false
-    delete: false
+    create: true
+    delete: true
     slug: "{{slug}}"
     fields:
-      - { label: "Step 1 Title", name: "step1_title", widget: "string" }
-      - { label: "Step 1 Description", name: "step1_desc", widget: "text" }
-      - { label: "Step 2 Title", name: "step2_title", widget: "string" }
-      - { label: "Step 2 Description", name: "step2_desc", widget: "text" }
-      - { label: "Step 3 Title", name: "step3_title", widget: "string" }
-      - { label: "Step 3 Description", name: "step3_desc", widget: "text" }
-      - { label: "Step 4 Title", name: "step4_title", widget: "string" }
-      - { label: "Step 4 Description", name: "step4_desc", widget: "text" }
-      - { label: "Step 5 Title", name: "step5_title", widget: "string" }
-      - { label: "Step 5 Description", name: "step5_desc", widget: "text" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Order", name: "order", widget: "number", default: 1 }
 
   - name: "portfolio"
     label: "Portfolio Photos"

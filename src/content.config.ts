@@ -73,16 +73,9 @@ const addons = defineCollection({
 const process = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/process' }),
   schema: z.object({
-    step1_title: z.string(),
-    step1_desc: z.string(),
-    step2_title: z.string(),
-    step2_desc: z.string(),
-    step3_title: z.string(),
-    step3_desc: z.string(),
-    step4_title: z.string(),
-    step4_desc: z.string(),
-    step5_title: z.string(),
-    step5_desc: z.string(),
+    title: z.string(),
+    description: z.string(),
+    order: z.number().default(0),
   }),
 });
 
