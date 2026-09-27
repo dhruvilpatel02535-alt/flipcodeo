@@ -43,6 +43,9 @@ sortedBlog.forEach(entry => {
 const contactEntries = await getCollection('contact');
 const contactData = contactEntries[0];
 
+const footerEntries = await getCollection('footer');
+const footerData = footerEntries[0];
+
 ---
 
 <!DOCTYPE html>
@@ -599,13 +602,13 @@ const contactData = contactEntries[0];
         </div>
     </section>
 
-    <a href={`https://wa.me/${contactData.data.whatsapp_number}`} target="_blank" class="whatsapp-float" aria-label="WhatsApp"></a>
+    <a href={`https://wa.me/${contactData.data.whatsapp_number}`} target="_blank" class="whatsapp-float" aria-label="WhatsApp"><span style="font-size: 2rem;">💬</span></a>
 
     <!-- FOOTER -->
     <footer>
         <div class="footer-logo">
-            <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 2.5rem; font-weight: 700;">Flipcodeo</span>
-            <span class="footer-logo-sub">Website Designer</span>
+            <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 2.5rem; font-weight: 700;">{footerData.data.logo_text}</span>
+            <span class="footer-logo-sub">{footerData.data.logo_sub}</span>
         </div>
         <div class="footer-links">
             <a href="#home">Home</a>
@@ -617,12 +620,12 @@ const contactData = contactEntries[0];
             <a href="#contact">Contact</a>
         </div>
         <div class="socials">
-            <a href="#">f</a>
-            <a href="#">in</a>
-            <a href="#">ig</a>
-            <a href="#">tw</a>
+            <a href={footerData.data.facebook} target="_blank">f</a>
+            <a href={footerData.data.linkedin} target="_blank">in</a>
+            <a href={footerData.data.instagram} target="_blank">ig</a>
+            <a href={footerData.data.twitter} target="_blank">tw</a>
         </div>
-        <p class="copyright">© 2026 Flipcodeo – Website Design Services in India. All rights reserved.</p>
+        <p class="copyright">{footerData.data.copyright}</p>
     </footer>
 
     <!-- BLOG MODAL -->

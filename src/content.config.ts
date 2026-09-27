@@ -122,4 +122,17 @@ const contact = defineCollection({
   }),
 });
 
-export const collections = { portfolio, hero, about, services, pricing, addons, process, why, faq, blog, contact };
+const footer = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/footer' }),
+  schema: z.object({
+    logo_text: z.string(),
+    logo_sub: z.string(),
+    copyright: z.string(),
+    facebook: z.string(),
+    linkedin: z.string(),
+    instagram: z.string(),
+    twitter: z.string(),
+  }),
+});
+
+export const collections = { portfolio, hero, about, services, pricing, addons, process, why, faq, blog, contact, footer };
