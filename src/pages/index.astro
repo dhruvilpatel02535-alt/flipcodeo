@@ -24,6 +24,9 @@ const sortedProcess = processEntries.sort((a, b) => (a.data.order || 0) - (b.dat
 const whyEntries = await getCollection('why');
 const sortedWhy = whyEntries.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
 
+const faqEntries = await getCollection('faq');
+const sortedFaq = faqEntries.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+
 ---
 
 <!DOCTYPE html>
@@ -538,17 +541,15 @@ const sortedWhy = whyEntries.sort((a, b) => (a.data.order || 0) - (b.data.order 
             <p class="section-sub">Everything you need to know about <strong>website design services</strong> in India.</p>
         </div>
         <div class="faq-list reveal">
-            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Website banane mein kitna time lagta hai?<span>+</span></div><div class="faq-answer">Usually <strong>3-7 working days</strong>, depending on the complexity of the <strong>website design project</strong>.</div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Website design ka kitna kharcha aayega?<span>+</span></div><div class="faq-answer"><strong>Starter website ₹2,999</strong> se shuru hota hai. Business ₹4,999 aur Premium ₹9,999. Domain ki keemat alag hai — .in pehla saal ₹300-500, renewal ₹700-800/saal. .com ₹800-1,200/saal. Hosting bilkul free hai.</div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Kya domain bhi package mein include hai?<span>+</span></div><div class="faq-answer">Nahi, <strong>domain cost</strong> package se alag hai. Aapko domain alag se kharidna hoga — .in pehla saal ₹300-500 aur uske baad ₹700-800/saal. .com ₹800-1,200/saal. Hosting free hai.</div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Kya main khud content update kar sakta hoon?<span>+</span></div><div class="faq-answer">Haan, hum <strong>CMS (Content Management System)</strong> install karte hain jisse aap khud content update kar sakte ho.</div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Kya website mobile par chalegi?<span>+</span></div><div class="faq-answer">Haan, <strong>100% mobile responsive</strong>. Website har device par perfect chalegi.</div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Kya aap SEO bhi karte ho?<span>+</span></div><div class="faq-answer">Haan, <strong>basic SEO</strong> package mein included hai. <strong>Advanced SEO</strong> ke liye ₹3,000 extra charge hota hai.</div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Payment kaise karna hoga?<span>+</span></div><div class="faq-answer"><strong>50% advance</strong> aur <strong>50% delivery</strong> ke baad. Payment UPI, bank transfer, ya cash se kar sakte ho.</div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Kya aap India mein website design services dete ho?<span>+</span></div><div class="faq-answer">Haan, hum <strong>India bhar mein website design services</strong> dete hain. Aap kisi bhi shehar se ho, hum aapke liye <strong>professional website</strong> bana sakte hain.</div></div>
+            {sortedFaq.map((item) => (
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">{item.data.question}<span>+</span></div>
+                    <div class="faq-answer">{item.data.answer}</div>
+                </div>
+            ))}
         </div>
     </section>
-
+    
     <!-- CONTACT -->
     <section id="contact">
         <div class="reveal">

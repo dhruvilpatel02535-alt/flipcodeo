@@ -97,7 +97,18 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Order", name: "order", widget: "number", default: 1 }    
-
+  
+  - name: "faq"
+    label: "FAQ"
+    folder: "src/content/faq"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Question", name: "question", widget: "string" }
+      - { label: "Answer", name: "answer", widget: "text" }
+      - { label: "Order", name: "order", widget: "number", default: 1 }
+      
   - name: "portfolio"
     label: "Portfolio Photos"
     folder: "src/content/portfolio"
