@@ -20,6 +20,10 @@ const sortedAddons = addonsEntries.sort((a, b) => (a.data.order || 0) - (b.data.
 
 const processEntries = await getCollection('process');
 const sortedProcess = processEntries.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+
+const whyEntries = await getCollection('why');
+const sortedWhy = whyEntries.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+
 ---
 
 <!DOCTYPE html>
@@ -467,7 +471,7 @@ const sortedProcess = processEntries.sort((a, b) => (a.data.order || 0) - (b.dat
             ))}
         </div>
     </section>
-    
+
     <!-- PORTFOLIO -->
     <section id="portfolio">
         <div class="reveal">
@@ -516,10 +520,13 @@ const sortedProcess = processEntries.sort((a, b) => (a.data.order || 0) - (b.dat
             <p class="section-sub">We deliver more than just a website — we deliver <strong>business growth</strong>.</p>
         </div>
         <div class="why-grid stagger">
-            <div class="why-card"><span class="why-icon">⚡</span><h4>Fast Delivery</h4><p>Your <strong>business website</strong> ready in 3-7 working days, not weeks.</p></div>
-            <div class="why-card"><span class="why-icon">💰</span><h4>Affordable Pricing</h4><p>Premium quality <strong>website design</strong> at prices that fit small businesses.</p></div>
-            <div class="why-card"><span class="why-icon">📱</span><h4>Mobile First</h4><p>Perfect <strong>responsive design</strong> on every device — phone, tablet, desktop.</p></div>
-            <div class="why-card"><span class="why-icon">🛠️</span><h4>Free Support</h4><p>15 days to 2 months <strong>free website support</strong> after launch.</p></div>
+            {sortedWhy.map((item) => (
+                <div class="why-card">
+                    <span class="why-icon">{item.data.icon}</span>
+                    <h4>{item.data.title}</h4>
+                    <p>{item.data.description}</p>
+                </div>
+            ))}
         </div>
     </section>
 

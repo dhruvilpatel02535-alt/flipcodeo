@@ -79,4 +79,14 @@ const process = defineCollection({
   }),
 });
 
-export const collections = { portfolio, hero, about, services, pricing, addons, process };
+const why = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/why' }),
+  schema: z.object({
+    icon: z.string(),
+    title: z.string(),
+    description: z.string(),
+    order: z.number().default(0),
+  }),
+});
+
+export const collections = { portfolio, hero, about, services, pricing, addons, process, why };
