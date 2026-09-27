@@ -63,24 +63,10 @@ const pricing = defineCollection({
 const addons = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/addons' }),
   schema: z.object({
-    addon1_name: z.string(),
-    addon1_note: z.string(),
-    addon1_price: z.string(),
-    addon2_name: z.string(),
-    addon2_note: z.string(),
-    addon2_price: z.string(),
-    addon3_name: z.string(),
-    addon3_note: z.string(),
-    addon3_price: z.string(),
-    addon4_name: z.string(),
-    addon4_note: z.string(),
-    addon4_price: z.string(),
-    addon5_name: z.string(),
-    addon5_note: z.string(),
-    addon5_price: z.string(),
-    addon6_name: z.string(),
-    addon6_note: z.string(),
-    addon6_price: z.string(),
+    name: z.string(),
+    note: z.string(),
+    price: z.string(),
+    order: z.number().default(0),
   }),
 });
 

@@ -16,7 +16,7 @@ const pricingEntries = await getCollection('pricing');
 const sortedPricing = pricingEntries.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
 
 const addonsEntries = await getCollection('addons');
-const addonsData = addonsEntries[0];
+const sortedAddons = addonsEntries.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
 
 const processEntries = await getCollection('process');
 const processData = processEntries[0];
@@ -426,12 +426,15 @@ const processData = processEntries[0];
             <p class="section-sub">Customize your <strong>website design package</strong> with these add-ons.</p>
         </div>
         <div class="addons-grid stagger">
-            <div class="addon-card"><div><span class="addon-name">Advanced SEO</span><span class="addon-note">Google ranking, keyword optimization</span></div><span class="addon-price">+ ₹3,000</span></div>
-            <div class="addon-card"><div><span class="addon-name">Payment Gateway</span><span class="addon-note">Razorpay, UPI, Card payments</span></div><span class="addon-price">+ ₹5,000</span></div>
-            <div class="addon-card"><div><span class="addon-name">Booking System</span><span class="addon-note">Appointments, reservations</span></div><span class="addon-price">+ ₹8,000</span></div>
-            <div class="addon-card"><div><span class="addon-name">Content Writing</span><span class="addon-note">Per page, professional copy</span></div><span class="addon-price">+ ₹500</span></div>
-            <div class="addon-card"><div><span class="addon-name">Logo Design</span><span class="addon-note">Custom brand logo</span></div><span class="addon-price">+ ₹1,500</span></div>
-            <div class="addon-card"><div><span class="addon-name">Domain + Hosting Setup</span><span class="addon-note">Setup charge only. Domain cost extra.</span></div><span class="addon-price">+ ₹500</span></div>
+            {sortedAddons.map((addon) => (
+                <div class="addon-card">
+                    <div>
+                        <span class="addon-name">{addon.data.name}</span>
+                        <span class="addon-note">{addon.data.note}</span>
+                    </div>
+                    <span class="addon-price">{addon.data.price}</span>
+                </div>
+            ))}
         </div>
         <div class="domain-info reveal">
             <h4>Domain Cost (Extra)</h4>

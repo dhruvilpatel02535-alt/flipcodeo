@@ -66,28 +66,14 @@ collections:
   - name: "addons"
     label: "Add-ons"
     folder: "src/content/addons"
-    create: false
-    delete: false
+    create: true
+    delete: true
     slug: "{{slug}}"
     fields:
-      - { label: "Add-on 1 Name", name: "addon1_name", widget: "string" }
-      - { label: "Add-on 1 Note", name: "addon1_note", widget: "string" }
-      - { label: "Add-on 1 Price", name: "addon1_price", widget: "string" }
-      - { label: "Add-on 2 Name", name: "addon2_name", widget: "string" }
-      - { label: "Add-on 2 Note", name: "addon2_note", widget: "string" }
-      - { label: "Add-on 2 Price", name: "addon2_price", widget: "string" }
-      - { label: "Add-on 3 Name", name: "addon3_name", widget: "string" }
-      - { label: "Add-on 3 Note", name: "addon3_note", widget: "string" }
-      - { label: "Add-on 3 Price", name: "addon3_price", widget: "string" }
-      - { label: "Add-on 4 Name", name: "addon4_name", widget: "string" }
-      - { label: "Add-on 4 Note", name: "addon4_note", widget: "string" }
-      - { label: "Add-on 4 Price", name: "addon4_price", widget: "string" }
-      - { label: "Add-on 5 Name", name: "addon5_name", widget: "string" }
-      - { label: "Add-on 5 Note", name: "addon5_note", widget: "string" }
-      - { label: "Add-on 5 Price", name: "addon5_price", widget: "string" }
-      - { label: "Add-on 6 Name", name: "addon6_name", widget: "string" }
-      - { label: "Add-on 6 Note", name: "addon6_note", widget: "string" }
-      - { label: "Add-on 6 Price", name: "addon6_price", widget: "string" }
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Note", name: "note", widget: "string" }
+      - { label: "Price", name: "price", widget: "string", hint: "Jaise: + ₹3,000" }
+      - { label: "Order", name: "order", widget: "number", default: 1 }
 
   - name: "process"
     label: "Process Steps"
