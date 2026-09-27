@@ -108,6 +108,19 @@ collections:
       - { label: "Question", name: "question", widget: "string" }
       - { label: "Answer", name: "answer", widget: "text" }
       - { label: "Order", name: "order", widget: "number", default: 1 }
+
+  - name: "blog"
+    label: "Blog Articles"
+    folder: "src/content/blog"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Tag (Category)", name: "tag", widget: "string", hint: "Jaise: Business, SEO, Pricing" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Excerpt (Short Description)", name: "excerpt", widget: "text" }
+      - { label: "Body (HTML allowed)", name: "body", widget: "text", hint: "Use HTML tags like <p>, <h3>, <ul>, <li>, <strong>" }
+      - { label: "Order", name: "order", widget: "number", default: 1 }    
       
   - name: "portfolio"
     label: "Portfolio Photos"

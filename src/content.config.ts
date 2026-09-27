@@ -98,4 +98,15 @@ const faq = defineCollection({
   }),
 });
 
-export const collections = { portfolio, hero, about, services, pricing, addons, process, why, faq };
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  schema: z.object({
+    tag: z.string(),
+    title: z.string(),
+    excerpt: z.string(),
+    body: z.string(),
+    order: z.number().default(0),
+  }),
+});
+
+export const collections = { portfolio, hero, about, services, pricing, addons, process, why, faq, blog };

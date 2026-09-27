@@ -27,6 +27,18 @@ const sortedWhy = whyEntries.sort((a, b) => (a.data.order || 0) - (b.data.order 
 const faqEntries = await getCollection('faq');
 const sortedFaq = faqEntries.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
 
+const blogEntries = await getCollection('blog');
+const sortedBlog = blogEntries.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+
+// Blog data ko JSON mein convert karo (JavaScript ke liye)
+const blogDataObj = {};
+sortedBlog.forEach(entry => {
+  blogDataObj[entry.id] = {
+    tag: entry.data.tag,
+    title: entry.data.title,
+    body: entry.data.body
+  };
+});
 ---
 
 <!DOCTYPE html>
@@ -506,15 +518,19 @@ const sortedFaq = faqEntries.sort((a, b) => (a.data.order || 0) - (b.data.order 
             <p class="section-sub">Learn about <strong>website design, SEO, and online business growth</strong> in India.</p>
         </div>
         <div class="blog-grid stagger">
-            <div class="blog-card"><span class="blog-tag">Business</span><h3>Why Your Small Business Needs a Website in 2026</h3><p>In today's digital age, having a <strong>professional website</strong> is essential for small businesses. Learn how a website can help you attract more customers online.</p><a class="blog-read" onclick="openBlog('blog1')">Read More →</a></div>
-            <div class="blog-card"><span class="blog-tag">Pricing</span><h3>Website Design Cost in India – Complete Guide</h3><p>Confused about <strong>website design costs</strong>? We break down the pricing for small business websites, e-commerce stores, and custom solutions.</p><a class="blog-read" onclick="openBlog('blog2')">Read More →</a></div>
-            <div class="blog-card"><span class="blog-tag">SEO</span><h3>How to Choose the Right Website Designer in India</h3><p>Looking for a <strong>website designer in India</strong>? Here are 7 things to check before hiring a web designer for your business.</p><a class="blog-read" onclick="openBlog('blog3')">Read More →</a></div>
-            <div class="blog-card"><span class="blog-tag">Design</span><h3>5 Benefits of Mobile Responsive Website Design</h3><p>Over 70% of users browse websites on mobile. Learn why <strong>mobile responsive design</strong> is crucial for your business website.</p><a class="blog-read" onclick="openBlog('blog4')">Read More →</a></div>
-            <div class="blog-card"><span class="blog-tag">Growth</span><h3>How a Website Can Grow Your Local Business</h3><p>From attracting new customers to building brand credibility, discover how a <strong>professional website</strong> can transform your local business.</p><a class="blog-read" onclick="openBlog('blog5')">Read More →</a></div>
-            <div class="blog-card"><span class="blog-tag">Tips</span><h3>10 Must-Have Features for Your Business Website</h3><p>From <strong>WhatsApp integration</strong> to <strong>SEO optimization</strong>, here are 10 features every business website should have in 2026.</p><a class="blog-read" onclick="openBlog('blog6')">Read More →</a></div>
+            {sortedBlog.map((article) => (
+                <div class="blog-card">
+                    <span class="blog-tag">{article.data.tag}</span>
+                    <h3>{article.data.title}</h3>
+                    <p>{article.data.excerpt}</p>
+                    <a class="blog-read" onclick={`openBlog('${article.id}')`}>Read More →</a>
+                </div>
+            ))}
         </div>
     </section>
 
+    <!-- BLOG DATA FOR JAVASCRIPT -->
+    <script type="application/json" id="blogData" set:html={JSON.stringify(blogDataObj)}></script>
     <!-- WHY -->
     <section id="why">
         <div class="reveal">
@@ -549,7 +565,7 @@ const sortedFaq = faqEntries.sort((a, b) => (a.data.order || 0) - (b.data.order 
             ))}
         </div>
     </section>
-    
+
     <!-- CONTACT -->
     <section id="contact">
         <div class="reveal">
