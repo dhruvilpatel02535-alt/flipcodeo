@@ -109,4 +109,17 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { portfolio, hero, about, services, pricing, addons, process, why, faq, blog };
+const contact = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/contact' }),
+  schema: z.object({
+    heading: z.string(),
+    description: z.string(),
+    email: z.string(),
+    phone: z.string(),
+    phone_note: z.string(),
+    location: z.string(),
+    whatsapp_number: z.string(),
+  }),
+});
+
+export const collections = { portfolio, hero, about, services, pricing, addons, process, why, faq, blog, contact };

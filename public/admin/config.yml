@@ -121,7 +121,22 @@ collections:
       - { label: "Excerpt (Short Description)", name: "excerpt", widget: "text" }
       - { label: "Body (HTML allowed)", name: "body", widget: "text", hint: "Use HTML tags like <p>, <h3>, <ul>, <li>, <strong>" }
       - { label: "Order", name: "order", widget: "number", default: 1 }    
-      
+
+  - name: "contact"
+    label: "Contact Section"
+    folder: "src/content/contact"
+    create: false
+    delete: false
+    slug: "{{slug}}"
+    fields:
+      - { label: "Heading", name: "heading", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Email", name: "email", widget: "string" }
+      - { label: "Phone (WhatsApp)", name: "phone", widget: "string" }
+      - { label: "Phone Note", name: "phone_note", widget: "text" }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "WhatsApp Number (with country code, no +)", name: "whatsapp_number", widget: "string", hint: "Jaise: 918128302535" }
+          
   - name: "portfolio"
     label: "Portfolio Photos"
     folder: "src/content/portfolio"

@@ -39,6 +39,10 @@ sortedBlog.forEach(entry => {
     body: entry.data.body
   };
 });
+
+const contactEntries = await getCollection('contact');
+const contactData = contactEntries[0];
+
 ---
 
 <!DOCTYPE html>
@@ -575,29 +579,27 @@ sortedBlog.forEach(entry => {
         </div>
         <div class="contact-wrap">
             <div class="contact-info reveal">
-                <h3>Let's Create<br>Something<br>Beautiful</h3>
-                <p>We'd love to hear about your <strong>business website</strong> ideas. Free consultation available.</p>
+                <h3>{contactData.data.heading}</h3>
+                <p>{contactData.data.description}</p>
                 <span class="contact-label">Email</span>
-                <p>flipcodeo1@gmail.com</p>
+                <p>{contactData.data.email}</p>
                 <span class="contact-label">Phone (WhatsApp Only)</span>
-                <p>+91 8128302535</p>
-                <p style="font-size: 0.9rem; color: #777; margin-top: 5px; text-align: left;">This number is available for WhatsApp calls and messages only. Direct calls will not be answered.</p>
+                <p>{contactData.data.phone}</p>
+                <p style="font-size: 0.9rem; color: #777; margin-top: 5px; text-align: left;">{contactData.data.phone_note}</p>
                 <span class="contact-label">Location</span>
-                <p>India</p>
+                <p>{contactData.data.location}</p>
             </div>
             <div class="contact-form reveal">
                 <input type="text" id="name" placeholder="Your Name" required>
                 <input type="email" id="email" placeholder="Email Address" required>
                 <input type="tel" id="phone" placeholder="Phone Number" required>
                 <textarea id="message" rows="5" placeholder="Tell us about your website project..." required></textarea>
-                <button onclick="sendToWhatsApp()">Send Message</button>
+                <button onclick="sendToWhatsApp('{contactData.data.whatsapp_number}')">Send Message</button>
             </div>
         </div>
     </section>
 
-    <a href="https://wa.me/918128302535" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
-        <span style="font-size: 2rem;">💬</span>
-    </a>
+    <a href={`https://wa.me/${contactData.data.whatsapp_number}`} target="_blank" class="whatsapp-float" aria-label="WhatsApp"></a>
 
     <!-- FOOTER -->
     <footer>
@@ -641,7 +643,7 @@ sortedBlog.forEach(entry => {
 
     <script is:inline>
         // ============ BLOG ARTICLES (JSON STRING - Astro compatible) ============
-        const blogArticles = JSON.parse('{"blog1":{"tag":"Business","title":"Why Your Small Business Needs a Website in 2026","body":"<p>In today digital age, if your small business is not online, you are losing customers. In 2026, 8 out of 10 people search on Google before choosing a business. If you do not have a website, they cannot find you.</p><h3>1. 24/7 Online Presence</h3><p>Your website works 24 hours a day, 7 days a week. Even while you sleep, your website tells customers about your business. It is a digital salesman that never gets tired.</p><h3>2. Credibility and Trust</h3><p>When a customer searches for you online and finds a professional website, they trust you more. Businesses without websites are still considered less trustworthy today.</p><h3>3. Stay Ahead of Competitors</h3><p>Many of your local competitors do not have a website. If you do, you stand out. Your visibility on Google Maps, local search, and online reviews increases dramatically.</p><h3>4. Cost-Effective Marketing</h3><p>Compared to newspaper ads, banners, or pamphlets, a professional website costs far less and works all year round. At Flipcodeo, websites start at just Rs 2,999.</p><h3>5. Customer Data Collection</h3><p>Through your website, you can collect customer emails, phone numbers, feedback, and promote your offers. This data helps your business grow.</p><h3>Conclusion</h3><p>If you want to seriously grow your small business in 2026, getting a website is essential. It is a one-time investment that pays off for years. Contact Flipcodeo today and take your business online.</p>"},"blog2":{"tag":"Pricing","title":"Website Design Cost in India - Complete Guide","body":"<p>The biggest question most business owners ask is - How much does a website cost? In this guide, we break down all website design costs in India so you have complete clarity.</p><h3>Types of Websites and Their Costs</h3><ul><li>Starter Website (1 Page): Rs 2,999 - perfect for local shops, freelancers, and professionals.</li><li>Business Website (3 Pages): Rs 4,999 - for small businesses that need services, about, and contact pages.</li><li>Premium Website (5 Pages): Rs 9,999 - for growing businesses that need a detailed website.</li><li>E-Commerce Website: Starting from Rs 15,000 - for online stores with payment gateway integration.</li></ul><h3>Domain Cost (Separate)</h3><p>Domain cost is not included in any package. It must be paid separately:</p><ul><li>.in Domain: First year Rs 300-500, renewal Rs 700-800/year</li><li>.com Domain: Rs 800-1,200/year</li><li>Hosting: Completely free on Netlify</li><li>SSL Certificate: Free (for HTTPS)</li></ul><h3>Add-on Services</h3><ul><li>Advanced SEO: +Rs 3,000</li><li>Payment Gateway: +Rs 5,000</li><li>Booking System: +Rs 8,000</li><li>Content Writing: +Rs 500 per page</li><li>Logo Design: +Rs 1,500</li></ul><h3>Do You Get Everything Together?</h3><p>At Flipcodeo, you get transparent pricing. No hidden charges. 50% advance and 50% after delivery - simple!</p><h3>Conclusion</h3><p>Website design cost depends on your needs. But starting at Rs 2,999, you can get a professional website. Contact us today for a free consultation!</p>"},"blog3":{"tag":"SEO","title":"How to Choose the Right Website Designer in India","body":"<p>Finding a website designer in India is easy, but choosing the right one is tough. Many people hunt for the cheapest designer and regret it later. Check these 7 things before hiring:</p><h3>1. Check Their Portfolio</h3><p>Look at their previous websites. Do they look professional? Do they work well on mobile? Is the speed good? The portfolio tells you how skilled the designer is.</p><h3>2. Responsive Design</h3><p>Over 70% of people browse on mobile today. If the designer does not build mobile responsive websites, move on. Mobile-first design is essential now.</p><h3>3. SEO Knowledge</h3><p>A good designer knows basic SEO - meta tags, headings, image optimization, page speed. If they cannot build an SEO-friendly website, you will not rank on Google.</p><h3>4. Speed and Performance</h3><p>How fast does the website load? If it takes more than 3 seconds, customers leave. A good designer writes clean code that loads fast.</p><h3>5. Communication</h3><p>Do they respond to your questions quickly? Do they understand your requirements? Good communication makes the project smooth.</p><h3>6. Pricing Transparency</h3><p>Do they tell you all costs upfront? There should be no hidden charges. At Flipcodeo, we offer transparent pricing.</p><h3>7. Support and Maintenance</h3><p>Do you get support after launch? For how long? Flipcodeo offers 15 days to 2 months of free support.</p><h3>Conclusion</h3><p>Choosing the right designer is crucial for your business. Do not just look at price - check quality, support, and SEO too. Contact us today!</p>"},"blog4":{"tag":"Design","title":"5 Benefits of Mobile Responsive Website Design","body":"<p>If your website does not work well on mobile today, you are losing customers. Mobile responsive design is no longer a luxury - it is a necessity. Here are 5 benefits:</p><h3>1. Better User Experience</h3><p>When someone opens your website on their phone and everything looks right - readable text, clickable buttons, fitting images - they are happy. A bad experience makes them leave instantly.</p><h3>2. Higher Google Rankings</h3><p>Google has prioritized mobile-friendly websites in rankings since 2015. Today, mobile responsiveness is a direct ranking factor. If your website is not mobile-friendly, Google will not show it on top.</p><h3>3. More Conversions</h3><p>Mobile users have different conversion behavior than desktop users. If your website runs smoothly on mobile, people stay longer, browse more, and buy more.</p><h3>4. Cost-Effective</h3><p>Building a separate mobile app costs lakhs. But a responsive website works on all devices at once - phone, tablet, desktop. One investment, presence everywhere.</p><h3>5. Future-Proof</h3><p>New devices keep coming - foldable phones, tablets, smart TVs. Responsive design automatically adjusts to all of them.</p><h3>Conclusion</h3><p>Mobile responsive website is a must-have for your business. All Flipcodeo websites are 100% mobile responsive. Get your website made today!</p>"},"blog5":{"tag":"Growth","title":"How a Website Can Grow Your Local Business","body":"<p>If you run a local business in India - whether it is a salon, gym, restaurant, or clinic - a professional website can completely transform your business. Here is how:</p><h3>1. Local Customers Can Find You</h3><p>When someone searches for salon near me or best gym in your city, Google shows businesses that have a website and are registered on Google Maps. Without a website, you do not appear in that list.</p><h3>2. 24/7 Booking and Enquiry</h3><p>With a contact form, WhatsApp button, or booking system on your website, you can receive enquiries even at night. You wake up to new leads.</p><h3>3. Brand Credibility</h3><p>A good website gives your local business a professional look like big brands. Customers feel you are serious and will provide good service.</p><h3>4. Customer Reviews and Testimonials</h3><p>You can display reviews from happy customers on your website. This social proof convinces new customers to trust you.</p><h3>5. Offers and Promotions</h3><p>You can easily update offers, discounts, and seasonal promotions on your website. Customers keep getting the latest deals, which motivates them to return.</p><h3>6. Stay Ahead of Competitors</h3><p>Many local businesses in your area do not have a website. If you do, you stand out as more professional.</p><h3>Conclusion</h3><p>A website brings new customers to your local business, builds credibility, and increases sales. Flipcodeo builds affordable websites for you - starting at just Rs 2,999.</p>"},"blog6":{"tag":"Tips","title":"10 Must-Have Features for Your Business Website","body":"<p>A good business website needs certain features. If you are getting a website made, make sure these 10 things are included:</p><h3>1. Mobile Responsive Design</h3><p>First - the website must work perfectly on mobile. Without this, everything else is useless.</p><h3>2. Fast Loading Speed</h3><p>The website should load in under 3 seconds. Slow websites drive customers away and Google ranks them lower.</p><h3>3. WhatsApp Integration</h3><p>WhatsApp is the most used app in India. With a WhatsApp button on your website, customers can message you instantly. Flipcodeo includes this in every website.</p><h3>4. Contact Form</h3><p>A simple contact form so customers can email you. Name, email, phone, and message - that is all you need.</p><h3>5. Clear Call-to-Action (CTA)</h3><p>Every page should have a clear CTA - Call Now, WhatsApp Us, Book Appointment, Buy Now. Customers should know what to do next.</p><h3>6. SEO-Friendly Structure</h3><p>Proper headings (H1, H2), meta tags, image alt text, and clean URLs. This is essential for Google ranking.</p><h3>7. Gallery / Portfolio</h3><p>If you have products, services, or past work, show photos. Visual proof convinces customers.</p><h3>8. Customer Testimonials</h3><p>Display reviews or video testimonials from happy customers. This builds trust.</p><h3>9. Social Media Links</h3><p>Link your Facebook, Instagram, LinkedIn, and YouTube profiles on your website. This strengthens your online presence.</p><h3>10. Google Analytics</h3><p>Install Analytics so you know how many people visit, where they come from, and what they view. Without data, there is no growth.</p><h3>Conclusion</h3><p>With these 10 features, your website becomes a complete business tool. Flipcodeo provides all these features in affordable packages. Plan your website today!</p>"}}');
+        const blogArticles = JSON.parse(document.getElementById('blogData').textContent);
 
         // ============ SPLASH SCREEN ============
         window.addEventListener('load', () => {
@@ -783,14 +785,14 @@ sortedBlog.forEach(entry => {
             }
         });
 
-        function sendToWhatsApp() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('message').value;
-            const text = 'Name: ' + name + '%0AEmail: ' + email + '%0APhone: ' + phone + '%0AProject: ' + message;
-            window.open('https://wa.me/918128302535?text=' + text, '_blank');
-        }
+        function sendToWhatsApp(waNumber) {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const message = document.getElementById('message').value;
+    const text = 'Name: ' + name + '%0AEmail: ' + email + '%0APhone: ' + phone + '%0AProject: ' + message;
+    window.open('https://wa.me/' + waNumber + '?text=' + text, '_blank');
+}
 
         // ============ MAKE FUNCTIONS GLOBAL (for onclick attributes) ============
         window.openBlog = openBlog;
