@@ -9,6 +9,6 @@ rating: 5
 date: September 2026
 project_type: Restaurant Website
 photo: /images/uploads/photo.jpeg
-screenshot: ""
+screenshot: /images/uploads/copilot_20260910_190009.png
 order: 1
 ---
