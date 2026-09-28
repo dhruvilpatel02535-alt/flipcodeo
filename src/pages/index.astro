@@ -49,6 +49,9 @@ const footerData = footerEntries[0];
 const domainInfoEntries = await getCollection('domainInfo');
 const domainInfoData = domainInfoEntries[0];
 
+const testimonialsEntries = await getCollection('testimonials');
+const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+
 ---
 
 <!DOCTYPE html>
@@ -294,6 +297,77 @@ const domainInfoData = domainInfoEntries[0];
         .socials a { width: 50px; height: 50px; border: 1px solid #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #888; text-decoration: none; transition: 0.4s; }
         .socials a:hover { border-color: #fff; color: #fff; background: #222; }
         .copyright { color: #555; font-size: 0.8rem; letter-spacing: 2px; }
+        
+        /* ============ TESTIMONIALS ============ */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        .testimonial-card {
+            background: #fff;
+            border: 1px solid #eaeaea;
+            padding: 30px 28px;
+            transition: 0.4s;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+            border-color: #d4af37;
+        }
+        .testimonial-rating {
+            color: #d4af37;
+            font-size: 1.3rem;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+        .testimonial-review {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 22px;
+            font-style: italic;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+        .testimonial-photo {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #d4af37;
+        }
+        .testimonial-author h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 3px;
+        }
+        .testimonial-author p {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 3px;
+        }
+        .testimonial-date {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .testimonial-screenshot {
+            width: 100%;
+            margin-top: 18px;
+            border-radius: 8px;
+            border: 1px solid #eaeaea;
+            max-height: 200px;
+            object-fit: contain;
+        }
 
         /* ============ RESPONSIVE ============ */
         @media (max-width: 900px) {
@@ -358,6 +432,7 @@ const domainInfoData = domainInfoEntries[0];
             <li><a href="#services">Services</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
             <li><a href="#blog">Blog</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -466,15 +541,12 @@ const domainInfoData = domainInfoEntries[0];
             ))}
         </div>
         <div class="domain-info reveal">
-            <h4>Domain Cost (Extra)</h4>
-            <p>Domain cost is not included in any package. It has to be paid separately. Hosting on Netlify is completely free.</p>
+            <h4>{domainInfoData.data.heading}</h4>
+            <p>{domainInfoData.data.description}</p>
             <table>
-                <tr><td><strong>.in Domain — 1st Year</strong></td><td>₹300 – ₹500</td></tr>
-                <tr><td><strong>.in Domain — Renewal</strong></td><td>₹700 – ₹800 / year</td></tr>
-                <tr><td><strong>.com Domain — 1st Year</strong></td><td>₹800 – ₹1,200</td></tr>
-                <tr><td><strong>.com Domain — Renewal</strong></td><td>₹800 – ₹1,200 / year</td></tr>
-                <tr><td>Hosting (Netlify)</td><td>Free</td></tr>
-                <tr><td>SSL Certificate (HTTPS)</td><td>Free</td></tr>
+                {domainInfoData.data.rows.map((row) => (
+                    <tr><td><strong>{row.label}</strong></td><td>{row.value}</td></tr>
+                ))}
             </table>
         </div>
     </section>
@@ -554,6 +626,40 @@ const domainInfoData = domainInfoEntries[0];
                     <span class="why-icon">{item.data.icon}</span>
                     <h4>{item.data.title}</h4>
                     <p>{item.data.description}</p>
+                </div>
+            ))}
+        </div>
+    </section>
+    
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+        <div class="reveal">
+            <div class="section-tag">Client Reviews</div>
+            <h2 class="section-title">What Our Clients Say</h2>
+            <p class="section-sub">Real reviews from <strong>real businesses</strong> we've helped grow online.</p>
+        </div>
+        <div class="testimonials-grid stagger">
+            {sortedTestimonials.map((t) => (
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        {Array.from({ length: t.data.rating }).map(() => (
+                            <span>★</span>
+                        ))}
+                    </div>
+                    <p class="testimonial-review">"{t.data.review}"</p>
+                    <div class="testimonial-author">
+                        {t.data.photo && t.data.photo !== "" && (
+                            <img src={t.data.photo} alt={t.data.client_name} class="testimonial-photo" />
+                        )}
+                        <div>
+                            <h4>{t.data.client_name}</h4>
+                            <p>{t.data.business_name} — {t.data.city}</p>
+                            <span class="testimonial-date">{t.data.date} • {t.data.project_type}</span>
+                        </div>
+                    </div>
+                    {t.data.screenshot && t.data.screenshot !== "" && (
+                        <img src={t.data.screenshot} alt="Review Screenshot" class="testimonial-screenshot" />
+                    )}
                 </div>
             ))}
         </div>

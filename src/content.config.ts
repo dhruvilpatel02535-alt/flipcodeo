@@ -147,4 +147,20 @@ const domainInfo = defineCollection({
   }),
 });
 
-export const collections = { portfolio, hero, about, services, pricing, addons, process, why, faq, blog, contact, footer, domainInfo };
+const testimonials = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/testimonials' }),
+  schema: z.object({
+    client_name: z.string(),
+    business_name: z.string(),
+    city: z.string(),
+    review: z.string(),
+    rating: z.number().default(5),
+    date: z.string(),
+    project_type: z.string(),
+    photo: z.string().optional(),
+    screenshot: z.string().optional(),
+    order: z.number().default(0),
+  }),
+});
+
+export const collections = { portfolio, hero, about, services, pricing, addons, process, why, faq, blog, contact, footer, domainInfo, testimonials };
