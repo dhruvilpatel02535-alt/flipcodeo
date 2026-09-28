@@ -8,7 +8,7 @@ review: Flipcodeo ne meri restaurant ki website bahut achhi banayi. Pehle main
 rating: 5
 date: September 2026
 project_type: Restaurant Website
-photo: ""
-screenshot: /images/uploads/photo.jpeg
+photo: /images/uploads/photo.jpeg
+screenshot: ""
 order: 1
 ---
