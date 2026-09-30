@@ -1,0 +1,181 @@
+media:
+  input: public/images/uploads
+  output: /images/uploads
+
+content:
+  - name: hero
+    label: Hero Section
+    type: file
+    path: src/content/hero/index.md
+    fields:
+      - { name: tagline, label: Tagline, type: string }
+      - { name: title, label: Title, type: string }
+      - { name: subtitle, label: Subtitle, type: string }
+      - { name: description, label: Description, type: text }
+      - { name: price, label: Price Text, type: string }
+      - { name: btn1_text, label: Button 1 Text, type: string }
+      - { name: btn1_link, label: Button 1 Link, type: string }
+      - { name: btn2_text, label: Button 2 Text, type: string }
+      - { name: btn2_link, label: Button 2 Link, type: string }
+
+  - name: about
+    label: About Section
+    type: file
+    path: src/content/about/index.md
+    fields:
+      - { name: heading, label: Heading, type: string }
+      - { name: image, label: Image, type: image }
+      - { name: paragraph1, label: Paragraph 1, type: text }
+      - { name: paragraph2, label: Paragraph 2, type: text }
+      - { name: skills, label: Skills (comma separated), type: string }
+
+  - name: services
+    label: Services
+    type: collection
+    path: src/content/services
+    filename: "{fields.title}.md"
+    fields:
+      - { name: icon, label: Icon (emoji), type: string }
+      - { name: title, label: Title, type: string }
+      - { name: description, label: Description, type: text }
+      - { name: order, label: Order, type: number }
+
+  - name: pricing
+    label: Pricing Plans
+    type: collection
+    path: src/content/pricing
+    filename: "{fields.name}.md"
+    fields:
+      - { name: name, label: Plan Name, type: string }
+      - { name: price, label: Price, type: string }
+      - { name: note, label: Note, type: string }
+      - { name: features, label: Features (comma separated), type: text }
+      - { name: muted, label: Muted Features (comma separated), type: text }
+      - { name: popular, label: Popular (Most Popular badge), type: boolean }
+      - { name: order, label: Order, type: number }
+
+  - name: addons
+    label: Add-ons
+    type: collection
+    path: src/content/addons
+    filename: "{fields.name}.md"
+    fields:
+      - { name: name, label: Name, type: string }
+      - { name: note, label: Note, type: string }
+      - { name: price, label: Price, type: string }
+      - { name: order, label: Order, type: number }
+
+  - name: domainInfo
+    label: Domain Info Table
+    type: file
+    path: src/content/domainInfo/index.md
+    fields:
+      - { name: heading, label: Heading, type: string }
+      - { name: description, label: Description, type: text }
+      - name: rows
+        label: Table Rows
+        type: list
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: value, label: Value, type: string }
+
+  - name: process
+    label: Process Steps
+    type: collection
+    path: src/content/process
+    filename: "{fields.title}.md"
+    fields:
+      - { name: title, label: Title, type: string }
+      - { name: description, label: Description, type: text }
+      - { name: order, label: Order, type: number }
+
+  - name: why
+    label: Why Choose Us
+    type: collection
+    path: src/content/why
+    filename: "{fields.title}.md"
+    fields:
+      - { name: icon, label: Icon (emoji), type: string }
+      - { name: title, label: Title, type: string }
+      - { name: description, label: Description, type: text }
+      - { name: order, label: Order, type: number }
+
+  - name: faq
+    label: FAQ
+    type: collection
+    path: src/content/faq
+    filename: "{fields.question}.md"
+    fields:
+      - { name: question, label: Question, type: string }
+      - { name: answer, label: Answer, type: text }
+      - { name: order, label: Order, type: number }
+
+  - name: blog
+    label: Blog Articles
+    type: collection
+    path: src/content/blog
+    filename: "{fields.title}.md"
+    fields:
+      - { name: tag, label: Tag (Category), type: string }
+      - { name: title, label: Title, type: string }
+      - { name: excerpt, label: Excerpt (Short Description), type: text }
+      - { name: body, label: Body (HTML allowed), type: rich-text }
+      - { name: order, label: Order, type: number }
+
+  - name: testimonials
+    label: Client Reviews
+    type: collection
+    path: src/content/testimonials
+    filename: "{fields.client_name}.md"
+    fields:
+      - { name: client_name, label: Client Name, type: string }
+      - { name: business_name, label: Business Name, type: string }
+      - { name: city, label: City, type: string }
+      - { name: review, label: Review Text, type: text }
+      - { name: rating, label: Rating (1-5 stars), type: number }
+      - { name: date, label: Date, type: string }
+      - { name: project_type, label: Project Type, type: string }
+      - { name: photo, label: Client Photo (optional), type: image }
+      - { name: screenshot, label: WhatsApp/Google Screenshot (optional), type: image }
+      - { name: order, label: Order, type: number }
+
+  - name: portfolio
+    label: Portfolio Photos
+    type: collection
+    path: src/content/portfolio
+    filename: "{fields.title}.md"
+    fields:
+      - { name: title, label: Project Title, type: string }
+      - { name: category, label: Category, type: string }
+      - { name: image, label: Photo, type: image }
+      - { name: order, label: Order, type: number }
+
+  - name: contact
+    label: Contact Section
+    type: file
+    path: src/content/contact/index.md
+    fields:
+      - { name: heading, label: Heading, type: string }
+      - { name: description, label: Description, type: text }
+      - { name: email, label: Email, type: string }
+      - { name: phone, label: Phone (WhatsApp), type: string }
+      - { name: phone_note, label: Phone Note, type: text }
+      - { name: location, label: Location, type: string }
+      - { name: whatsapp_number, label: WhatsApp Number (with country code, no +), type: string }
+
+  - name: footer
+    label: Footer
+    type: file
+    path: src/content/footer/index.md
+    fields:
+      - { name: logo_text, label: Logo Text, type: string }
+      - { name: logo_sub, label: Logo Sub Text, type: string }
+      - { name: copyright, label: Copyright Text, type: string }
+      - { name: facebook, label: Facebook URL, type: string }
+      - { name: linkedin, label: LinkedIn URL, type: string }
+      - { name: instagram, label: Instagram URL, type: string }
+      - { name: twitter, label: Twitter URL, type: string }
+
+settings:
+  commit:
+    identity: user
