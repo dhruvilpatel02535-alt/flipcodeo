@@ -140,10 +140,7 @@ const domainInfo = defineCollection({
   schema: z.object({
     heading: z.string(),
     description: z.string(),
-    rows: z.array(z.object({
-      label: z.string(),
-      value: z.string(),
-    })),
+   rows: z.string(),
   }),
 });
 

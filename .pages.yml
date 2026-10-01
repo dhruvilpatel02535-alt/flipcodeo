@@ -72,13 +72,8 @@ content:
     fields:
       - { name: heading, label: Heading, type: string }
       - { name: description, label: Description, type: text }
-      - name: rows
-        label: Table Rows
-        type: list
-        fields:
-          - { name: label, label: Label, type: string }
-          - { name: value, label: Value, type: string }
-
+      - { name: rows, label: Table Rows, type: text, hint: "Ek line mein ek row likho. Format: Label | Value" }
+      
   - name: process
     label: Process Steps
     type: collection

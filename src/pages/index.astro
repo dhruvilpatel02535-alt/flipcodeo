@@ -544,9 +544,15 @@ const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0
             <h4>{domainInfoData.data.heading}</h4>
             <p>{domainInfoData.data.description}</p>
             <table>
-                {domainInfoData.data.rows.map((row) => (
-                    <tr><td><strong>{row.label}</strong></td><td>{row.value}</td></tr>
-                ))}
+                {domainInfoData.data.rows.split('\n').filter(line => line.trim() !== '').map((line) => {
+                    const parts = line.split('|');
+                    return (
+                        <tr>
+                            <td><strong>{parts[0]?.trim()}</strong></td>
+                            <td>{parts[1]?.trim()}</td>
+                        </tr>
+                    );
+                })}
             </table>
         </div>
     </section>
