@@ -4,5 +4,5 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://flipcodeo.in',
-  integrations: [sitemap()],
+  integrations: [sitemap({ prefix: 'sm' })],
 });
