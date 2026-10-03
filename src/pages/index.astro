@@ -60,6 +60,8 @@ const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flipcodeo – Website Designer in India | Professional Website Design Services</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
     <meta name="description" content="Flipcodeo is a professional website design company in India. We create responsive, SEO-friendly websites for small businesses, startups, and local shops.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -444,7 +446,11 @@ const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0
     <!-- HERO -->
     <section class="hero" id="home">
         <div class="hero-tagline">{hero.data.tagline}</div>
-        <h1 class="hero-title" id="heroTitle"></h1>
+        <h1 class="hero-title" id="heroTitle">
+    {hero.data.title.split('').map((char, i) => (
+        <span class="letter" style={`animation-delay: ${i * 0.2 + 1.5}s`}>{char}</span>
+    ))}
+</h1>
         <div class="hero-divider"></div>
         <div class="hero-subtitle">{hero.data.subtitle}</div>
         <p class="hero-desc">{hero.data.description}</p>
@@ -773,20 +779,6 @@ const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0
                 }
             }, 1500);
         });
-
-        // ============ HERO LETTER ANIMATION ============
-        const heroTitle = document.getElementById('heroTitle');
-        if (heroTitle) {
-            const text = 'Flipcodeo';
-            heroTitle.innerHTML = '';
-            [...text].forEach((char, i) => {
-                const span = document.createElement('span');
-                span.textContent = char;
-                span.className = 'letter';
-                span.style.animationDelay = `${i * 0.2 + 1.5}s`;
-                heroTitle.appendChild(span);
-            });
-        }
 
         // ============ NAVBAR SCROLL ============
         window.addEventListener('scroll', () => {
