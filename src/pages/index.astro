@@ -62,6 +62,21 @@ const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0
     <title>Flipcodeo – Website Designer in India | Professional Website Design Services</title>
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="canonical" href="https://flipcodeo.in/" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Flipcodeo" />
+    <meta name="geo.region" content="IN" />
+    <meta name="geo.placename" content="India" />
+    <meta property="og:title" content="Flipcodeo – Website Designer in India" />
+    <meta property="og:description" content="Professional website design services in India. Starting at ₹2,999." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://flipcodeo.in/" />
+    <meta property="og:image" content="https://flipcodeo.in/logo.png" />
+    <meta property="og:site_name" content="Flipcodeo" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Flipcodeo – Website Designer in India" />
+    <meta name="twitter:description" content="Professional website design services in India. Starting at ₹2,999." />
+    <meta name="twitter:image" content="https://flipcodeo.in/logo.png" />
     <meta name="description" content="Flipcodeo is a professional website design company in India. We create responsive, SEO-friendly websites for small businesses, startups, and local shops.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,7 +88,7 @@ const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0
 
         /* ============ FLOATING PAPERS BACKGROUND ============ */
         .papers-bg { position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
-        .paper { position: absolute; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 20px 60px rgba(0,0,0,0.08); border-radius: 2px; opacity: 0.8; animation: paperFloat 15s infinite ease-in-out; }
+        .paper { position: absolute; background: #ffffff; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 20px 60px rgba(0,0,0,0.05); border-radius: 2px; opacity: 0.4; animation: paperFloat 15s infinite ease-in-out; }
         .paper-1 { width: 350px; height: 450px; top: 10%; left: 5%; transform: rotate(-10deg); animation-delay: 0s; }
         .paper-2 { width: 300px; height: 400px; top: 20%; right: 8%; transform: rotate(8deg); animation-delay: 3s; }
         .paper-3 { width: 280px; height: 350px; bottom: 10%; left: 12%; transform: rotate(6deg); animation-delay: 6s; }
@@ -96,7 +111,7 @@ const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0
         .logo { display: inline-flex; flex-direction: column; align-items: center; text-decoration: none; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.8rem; font-weight: 700; color: #111; line-height: 1; position: relative; filter: drop-shadow(0 0 5px rgba(212,175,55,0.3)); animation: logoGlow 3s infinite; }
         @keyframes logoGlow { 0%, 100% { filter: drop-shadow(0 0 5px rgba(212,175,55,0.3)); } 50% { filter: drop-shadow(0 0 15px rgba(212,175,55,0.6)); } }
         .logo::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #d4af37, transparent); }
-        .logo-sub { font-size: 0.45rem; letter-spacing: 3px; text-transform: uppercase; color: #888; margin-top: 3px; font-family: 'Space Grotesk', sans-serif; font-style: normal; font-weight: 500; }
+        .logo-sub { font-size: 0.45rem; letter-spacing: 3px; text-transform: uppercase; color: #555; margin-top: 3px; font-family: 'Space Grotesk', sans-serif; font-style: normal; font-weight: 500; }
         .nav-links { display: flex; gap: 30px; list-style: none; align-items: center; }
         .nav-links a { text-decoration: none; color: #333; font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; position: relative; transition: 0.3s; cursor: pointer; }
         .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px; background: #111; transition: 0.4s; }
@@ -116,7 +131,7 @@ const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0
 
         /* ============ HERO ============ */
         .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 160px 20px 80px; position: relative; }
-        .hero-tagline { font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; color: #d4af37; font-weight: 600; margin-bottom: 20px; opacity: 0; animation: fadeUp 1s 1.8s forwards; }
+        .hero-tagline { font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; color: #b8942a; font-weight: 700; margin-bottom: 20px; opacity: 0; animation: fadeUp 1s 1.8s forwards; }
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
         .hero-title { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(3.5rem, 12vw, 8rem); font-weight: 700; line-height: 1; margin-bottom: 25px; display: flex; flex-wrap: wrap; justify-content: center; }
         .letter { display: inline-block; opacity: 0; transform: translateY(60px) rotateX(80deg); animation: letterFlip 1.2s forwards, letterGlow 3s ease-in-out infinite; transform-origin: bottom; background: linear-gradient(135deg, #111 0%, #333 50%, #111 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
@@ -126,7 +141,7 @@ const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0
         .hero-subtitle { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #111; letter-spacing: 1px; margin-bottom: 25px; opacity: 0; animation: fadeUp 1s 2s forwards; max-width: 600px; }
         .hero-desc { font-size: 1.05rem; color: #666; max-width: 580px; margin: 0 auto 30px; line-height: 1.9; font-weight: 300; opacity: 0; transform: translateY(20px); animation: fadeUp 1s 2.2s forwards; }
         .hero-desc strong { color: #111; font-weight: 600; }
-        .hero-price { display: inline-block; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #d4af37; padding: 12px 35px; border: 1px solid rgba(212, 175, 55, 0.5); border-radius: 50px; background: rgba(212, 175, 55, 0.05); margin-bottom: 35px; opacity: 0; transform: translateY(20px); animation: fadeUp 1s 2.3s forwards; }
+        .hero-price { display: inline-block; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #b8942a; padding: 12px 35px; border: 1px solid rgba(184, 148, 42, 0.6); border-radius: 50px; background: rgba(184, 148, 42, 0.08); margin-bottom: 35px; opacity: 0; transform: translateY(20px); animation: fadeUp 1s 2.3s forwards; }
         .hero-btns { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; opacity: 0; transform: translateY(20px); animation: fadeUp 1s 2.5s forwards; }
         .magnetic-btn { background: #111; color: #fff; padding: 18px 55px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; border: none; transition: all 0.3s; text-decoration: none; display: inline-block; font-family: 'Space Grotesk', sans-serif; }
         .magnetic-btn:hover { background: #000; transform: translateY(-3px) scale(1.02); box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
@@ -135,7 +150,7 @@ const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0
         section { padding: 100px 40px; max-width: 1300px; margin: 0 auto; }
         .section-tag { font-size: 0.75rem; letter-spacing: 6px; text-transform: uppercase; color: #999; text-align: center; margin-bottom: 18px; }
         .section-title { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; text-align: center; margin-bottom: 20px; line-height: 1.1; }
-        .section-sub { font-size: 1rem; color: #777; text-align: center; max-width: 700px; margin: 0 auto 60px; line-height: 1.8; }
+        .section-sub { font-size: 1rem; color: #555; text-align: center; max-width: 700px; margin: 0 auto 60px; line-height: 1.8; }
 
         .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -157,7 +172,7 @@ const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0
         .service-icon { font-size: 2.5rem; margin-bottom: 25px; display: inline-block; transition: 0.3s; }
         .service-card:hover .service-icon { transform: scale(1.2) rotate(10deg); }
         .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; }
-        .service-card p { color: #777; font-size: 0.9rem; line-height: 1.8; text-align: justify; hyphens: auto; }
+        .service-card p { color: #555; font-size: 0.9rem; line-height: 1.8; text-align: justify; hyphens: auto; }
         .service-card p strong { color: #111; }
 
         /* ============ PRICING ============ */
@@ -298,7 +313,7 @@ const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0
         .socials { display: flex; justify-content: center; gap: 20px; margin-bottom: 45px; }
         .socials a { width: 50px; height: 50px; border: 1px solid #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #888; text-decoration: none; transition: 0.4s; }
         .socials a:hover { border-color: #fff; color: #fff; background: #222; }
-        .copyright { color: #555; font-size: 0.8rem; letter-spacing: 2px; }
+        .copyright { color: #aaa; font-size: 0.8rem; letter-spacing: 2px; }
         
         /* ============ TESTIMONIALS ============ */
         .testimonials-grid {
@@ -452,6 +467,7 @@ const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0
         </button>
     </nav>
 
+    <main>
     <!-- HERO -->
     <section class="hero" id="home">
         <div class="hero-tagline">{hero.data.tagline}</div>
@@ -626,7 +642,7 @@ const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0
                     <span class="blog-tag">{article.data.tag}</span>
                     <h3>{article.data.title}</h3>
                     <p>{article.data.excerpt}</p>
-                    <a class="blog-read" onclick={`openBlog('${article.id}')`}>Read More →</a>
+                    <a class="blog-read" href="#blog" onclick={`event.preventDefault(); openBlog('${article.id}')`}>Read More →</a>
                 </div>
             ))}
         </div>
@@ -731,6 +747,7 @@ const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0
             </div>
         </div>
     </section>
+    </main>
 
     <a href={`https://wa.me/${contactData.data.whatsapp_number}`} target="_blank" class="whatsapp-float" aria-label="WhatsApp"><span style="font-size: 2rem;">💬</span></a>
 

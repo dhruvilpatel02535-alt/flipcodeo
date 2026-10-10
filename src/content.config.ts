@@ -160,4 +160,4 @@ const testimonials = defineCollection({
   }),
 });
 
-export const collections = { portfolio, hero, about, services, pricing, addons, process, why, faq, blog, contact, footer, domainInfo, testimonials };
+export const collections = { portfolio, hero, about, services, pricing, addons, process, why, faq, blog, contact, footer, domainInfo,testimonials  };

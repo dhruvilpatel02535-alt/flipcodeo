@@ -1,0 +1,24 @@
+# Flipcodeo
+
+> Professional website design services in India. We create responsive, SEO-friendly websites for small businesses, startups, and local shops.
+
+## Services
+- Custom Website Design
+- Website Development
+- E-Commerce Website
+- Mobile Responsive Design
+- SEO-Friendly Websites
+- Website Maintenance
+
+## Pricing
+- Starter: ₹2,999
+- Business: ₹4,999
+- Premium: ₹9,999
+
+## Contact
+- Email: flipcodeo1@gmail.com
+- WhatsApp: +91 8128302535
+- Website: https://flipcodeo.in
+
+## Location
+India
