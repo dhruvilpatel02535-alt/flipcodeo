@@ -1,6 +1,6 @@
 ---
-title: e-commerce
-category: online shopping
-image: /images/uploads/LUXE Premium E-Commerce Website Mockup.png
+title: E-commerce Website
+category: Online Shopping
+image: /images/uploads/LUXE Premium E-Commerce Website Mockup-500kb.jpeg
 order: 2
 ---
