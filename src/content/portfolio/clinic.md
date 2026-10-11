@@ -1,6 +1,6 @@
 ---
-title: clinic
-category: health department
-image: /images/uploads/Gemini_Generated_Image_yaz9shyaz9shyaz9 (1).png
+title: Clinic Website
+category: Healthcare
+image: /images/uploads/MediCare Plus Healthcare Website Showcase-500kb.jpeg
 order: 4
 ---
