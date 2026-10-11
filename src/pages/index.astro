@@ -88,7 +88,7 @@ const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0
 
         /* ============ FLOATING PAPERS BACKGROUND ============ */
         .papers-bg { position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
-        .paper { position: absolute; background: #ffffff; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 20px 60px rgba(0,0,0,0.05); border-radius: 2px; opacity: 0.4; animation: paperFloat 15s infinite ease-in-out; }
+        .paper { position: absolute; background: #ffffff; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 20px 60px rgba(0,0,0,0.06); border-radius: 2px; opacity: 0.6; animation: paperFloat 15s infinite ease-in-out; }
         .paper-1 { width: 350px; height: 450px; top: 10%; left: 5%; transform: rotate(-10deg); animation-delay: 0s; }
         .paper-2 { width: 300px; height: 400px; top: 20%; right: 8%; transform: rotate(8deg); animation-delay: 3s; }
         .paper-3 { width: 280px; height: 350px; bottom: 10%; left: 12%; transform: rotate(6deg); animation-delay: 6s; }
@@ -131,7 +131,7 @@ const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0
 
         /* ============ HERO ============ */
         .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 160px 20px 80px; position: relative; }
-        .hero-tagline { font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; color: #b8942a; font-weight: 700; margin-bottom: 20px; opacity: 0; animation: fadeUp 1s 1.8s forwards; }
+        .hero-tagline { font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; color: #8b6f1f; font-weight: 700; margin-bottom: 20px; opacity: 0; animation: fadeUp 1s 1.8s forwards; }
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
         .hero-title { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(3.5rem, 12vw, 8rem); font-weight: 700; line-height: 1; margin-bottom: 25px; display: flex; flex-wrap: wrap; justify-content: center; }
         .letter { display: inline-block; opacity: 0; transform: translateY(60px) rotateX(80deg); animation: letterFlip 1.2s forwards, letterGlow 3s ease-in-out infinite; transform-origin: bottom; background: linear-gradient(135deg, #111 0%, #333 50%, #111 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
@@ -141,7 +141,7 @@ const sortedTestimonials = testimonialsEntries.sort((a, b) => (a.data.order || 0
         .hero-subtitle { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #111; letter-spacing: 1px; margin-bottom: 25px; opacity: 0; animation: fadeUp 1s 2s forwards; max-width: 600px; }
         .hero-desc { font-size: 1.05rem; color: #666; max-width: 580px; margin: 0 auto 30px; line-height: 1.9; font-weight: 300; opacity: 0; transform: translateY(20px); animation: fadeUp 1s 2.2s forwards; }
         .hero-desc strong { color: #111; font-weight: 600; }
-        .hero-price { display: inline-block; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #b8942a; padding: 12px 35px; border: 1px solid rgba(184, 148, 42, 0.6); border-radius: 50px; background: rgba(184, 148, 42, 0.08); margin-bottom: 35px; opacity: 0; transform: translateY(20px); animation: fadeUp 1s 2.3s forwards; }
+        .hero-price { display: inline-block; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #8b6f1f; padding: 12px 35px; border: 1px solid rgba(139, 111, 31, 0.6); border-radius: 50px; background: rgba(139, 111, 31, 0.08); margin-bottom: 35px; opacity: 0; transform: translateY(20px); animation: fadeUp 1s 2.3s forwards; }
         .hero-btns { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; opacity: 0; transform: translateY(20px); animation: fadeUp 1s 2.5s forwards; }
         .magnetic-btn { background: #111; color: #fff; padding: 18px 55px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; border: none; transition: all 0.3s; text-decoration: none; display: inline-block; font-family: 'Space Grotesk', sans-serif; }
         .magnetic-btn:hover { background: #000; transform: translateY(-3px) scale(1.02); box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
