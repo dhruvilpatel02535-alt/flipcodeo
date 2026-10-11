@@ -1,6 +1,6 @@
 ---
 heading: Building Websites That Build Businesses
-image: /images/uploads/flipcodeo.jpeg
+image: /images/uploads/about us.jpg
 paragraph1: Flipcodeo is a professional website design company in India. We help
   small businesses, startups, and local shops establish their online presence
   with custom website design and website development services.
